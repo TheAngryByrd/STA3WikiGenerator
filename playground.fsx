@@ -10,9 +10,15 @@ let inline tryGetValue (d : ^T) key =
     | true -> Some output
     | _ -> None
 
+let inline tryParse str : ^a option =
+    let mutable value = Unchecked.defaultof< ^a>
+    let result = (^a: (static member TryParse: string * byref< ^a> -> bool) str, &value)
+    if result then Some value
+    else None
+
 module GameFiles =
     let (/) path1 path2 = IO.Path.Combine(path1,path2)
-    let modBasePath =   __SOURCE_DIRECTORY__ / "STA3_UPRISING"
+    let modBasePath =   __SOURCE_DIRECTORY__ / ".." / "STA3NEMESIS"
     let gameInfoPath = IO.DirectoryInfo <| modBasePath  / "Gameinfo"
     let englishPath = IO.FileInfo <| modBasePath  / "String" / "English.str"
     let galaxyScenarioDef = IO.FileInfo <| modBasePath / "Gameinfo" / "GalaxyScenarioDef.galaxyScenarioDef"
@@ -87,14 +93,19 @@ let selectOne (key : string) (lines : string array) =
     |> Array.tryFind(fun s -> s.Trim().StartsWith(key,StringComparison.InvariantCultureIgnoreCase))
     |> Option.map(fun s -> s.Replace(key,"",StringComparison.InvariantCultureIgnoreCase).Trim().Trim('\"').Trim())
 
-let tryFloat (s : string) =
-    match System.Double.TryParse(s) with
-    |(true,v) -> Some v
-    | _ -> None
+let tryFloat (s : string) : float option =
+    tryParse s
+
+let tryBool (s : string) : bool option =
+    tryParse s
 
 let selectOneFloat (key : string) (lines : string array) =
     selectOne key lines
     |> Option.bind tryFloat
+
+let selectOneBool (key : string) (lines : string array) =
+    selectOne key lines
+    |> Option.bind tryBool
 
 let selectMany (key : string) (lines : string array) =
     lines
@@ -266,6 +277,10 @@ let parseBasicInfo (g : GameInfoFile) =
     }
 
 type WeaponBank = Front | Left | Right | Back
+[<RequireQualifiedAccessAttribute>]
+type ResearchRequirement =
+| Research of string list
+| Assimilation 
 
 type Weapon = {
     Name : string
@@ -273,7 +288,7 @@ type Weapon = {
     Range : float
     DPS : float*float
     WeaponBank : WeaponBank list
-    RequiredReseach : string list
+    RequiredReseach : ResearchRequirement
 }
 
 type BasePrice = {
@@ -281,6 +296,7 @@ type BasePrice = {
     Metal : float option
     Crystal : float option
     BuildTime : float option
+    SupplyCost : float option
 }
     with 
         static member Empty = {
@@ -288,12 +304,16 @@ type BasePrice = {
             Metal = None
             Crystal = None
             BuildTime = None
+            SupplyCost = None
         }
 
 let parseBasePrice (g : GameInfoFile) =
         let linesJoined = g.lines |> String.concat Environment.NewLine
         let stringInfoParser = $"basePrice(\n|\r|\r\n)\s+credits\s+(?<credits>\d+.\d+)(\n|\r|\r\n)\s+metal\s+(?<metal>\d+.\d+)(\n|\r|\r\n)\s+crystal\s+(?<crystal>\d+.\d+)"
-        let bp = {BasePrice.Empty with BuildTime = selectOneFloat "BuildTime" g.lines }
+        let bp = { BasePrice.Empty 
+                    with 
+                        BuildTime = selectOneFloat "BuildTime" g.lines
+                        SupplyCost = selectOneFloat "slotCount" g.lines }
         Regex.Matches(linesJoined, stringInfoParser,RegexOptions.Multiline) 
         |> Seq.tryHead
         |> Option.map(fun m ->
@@ -326,9 +346,14 @@ let parseShipValue  (lines : string array) (attribute : string) =
         )
         |> Seq.tryHead
     else
-        Some { StartValue = selectOneFloat attribute lines  |> Option.defaultValue 0.0; ValueIncreasePerLevel = 0.0 }
+        selectOneFloat attribute lines
+        |> Option.map(fun v ->
+            { StartValue = v; ValueIncreasePerLevel = 0.0 }
+        )
 
 let maxAdditionalLevels = 9.0
+
+
 
 let parseWeapon (g : GameInfoFile) =
     let lines = ResizeArray<ResizeArray<string>>()
@@ -336,7 +361,7 @@ let parseWeapon (g : GameInfoFile) =
     let mutable record = false
     g.lines
     |> Array.iter(fun l ->
-        if l = "Weapon" then 
+        if l.Trim().Equals("Weapon", StringComparison.InvariantCultureIgnoreCase) then 
             if weapon <> null then
                 lines.Add weapon
             weapon <-  ResizeArray<string>()
@@ -352,7 +377,8 @@ let parseWeapon (g : GameInfoFile) =
     let parseName (lines : string array) =
         lines
         |> selectOne "WeaponClassType"
-        |> Option.bind(fun wct -> GameFiles.tryGetEnglishValue $"IDS_WEAPONCLASSTYPE_{wct}" )
+        |> Option.bind(fun wct -> 
+            GameFiles.tryGetEnglishValue $"IDS_WEAPONCLASSTYPE_{wct}" )
         |> Option.defaultValue "Unknown"
     let parseAttackType (lines : string array) =
         lines
@@ -378,7 +404,7 @@ let parseWeapon (g : GameInfoFile) =
         let max =
             let getMax (sv : ShipValue) =
                 sv.StartValue + (sv.ValueIncreasePerLevel * maxAdditionalLevels)
-            //galaxy 131/45/40
+
             match weaponCooldownDecreasePerc, weaponDamageIncreasePerc with
             | Some coolDec, Some dmgInc ->
                 let coolDec = getMax coolDec
@@ -408,13 +434,21 @@ let parseWeapon (g : GameInfoFile) =
             if right.IsSome then WeaponBank.Right
         ]
     let parseRequiredResearch (lines : string array) =
-        lines
-        |> selectMany "Subject"
-        |> List.choose(fun researchId -> 
-            gameInfos 
-            |> Seq.tryFind(fun gi -> gi.fileName.Name = $"{researchId}.entity")
-            |> Option.map(fun g -> g.GetEnglishName )
-        )
+        let assimilation =
+            lines 
+            |> selectOne "RequiredFactionNameID"
+            |> Option.exists(fun v -> v.Trim() <> "")
+        if assimilation then
+            ResearchRequirement.Assimilation
+        else
+            lines
+            |> selectMany "Subject"
+            |> List.choose(fun researchId -> 
+                gameInfos 
+                |> Seq.tryFind(fun gi -> gi.fileName.Name = $"{researchId}.entity")
+                |> Option.map(fun g -> g.GetEnglishName )
+            )
+            |> ResearchRequirement.Research
 
     let parseWeapon (lines : string array) =
         let name = parseName lines
@@ -437,7 +471,10 @@ let parseWeapon (g : GameInfoFile) =
     |> Seq.map parseWeapon
     |> Seq.toList
     
-
+[<RequireQualifiedAccess>]
+type BombingValue = 
+| NoBombingAbility
+| SimpleBombing of float
 
 type ShipSpecifications = {
     HullStrength : ShipValue option
@@ -452,6 +489,15 @@ type ShipSpecifications = {
     CultureProtectRate : ShipValue option
     Weapons : Weapon list
     Shuttlebay : ShipValue option
+    Bombing : BombingValue
+    MaxAccelerationLinear : float option
+    MaxAccelerationStrafe : float option
+    MaxDecelerationLinear: float option
+    MaxAccelerationAngular: float option
+    MaxDecelerationAngular : float option
+    MaxSpeedLinear : float option
+    MaxRollRate : float option
+    MaxRollAngle : float option
 }
 
 
@@ -494,7 +540,14 @@ let parseShipSpecifications (g : GameInfoFile) =
             
         parseShipValue g.lines "CommandPoints"
         |> Option.orElseWith ifNoneThunk
-    
+    let parseBombing (g : GameInfoFile) =
+        let canBomb = selectOneBool "canBomb" g.lines |> Option.defaultValue false
+        if canBomb then
+            match selectOneFloat "baseDamage" g.lines with
+            | Some v ->  BombingValue.SimpleBombing v
+            | None -> BombingValue.NoBombingAbility
+        else
+            BombingValue.NoBombingAbility
     let hullStrength = parseHullStrength g
     let hullRestoreRate = parseHullRestoreRate g
     let armorRating = parseArmorRating g
@@ -506,6 +559,16 @@ let parseShipSpecifications (g : GameInfoFile) =
     let cultureProtectRate = parseCultureProtectRate g
     let weapons = parseWeapon g
     let shuttles = parseShuttlebay g
+    let bombing = parseBombing g
+    
+    let maxAccelerationLinear = selectOneFloat "maxAccelerationLinear" g.lines
+    let maxAccelerationStrafe = selectOneFloat "maxAccelerationStrafe" g.lines
+    let maxDecelerationLinear = selectOneFloat "maxDecelerationLinear" g.lines
+    let maxAccelerationAngular = selectOneFloat "maxAccelerationAngular" g.lines
+    let maxDecelerationAngular = selectOneFloat "maxDecelerationAngular" g.lines
+    let maxSpeedLinear = selectOneFloat "maxSpeedLinear"  g.lines
+    let maxRollRate = selectOneFloat "maxRollRate" g.lines
+    let maxRollAngle =selectOneFloat "maxRollRate" g.lines
     {
         HullStrength = hullStrength 
         HullRestoreRate = hullRestoreRate
@@ -519,6 +582,15 @@ let parseShipSpecifications (g : GameInfoFile) =
         CultureProtectRate =  cultureProtectRate
         Weapons = weapons
         Shuttlebay = shuttles
+        Bombing = bombing
+        MaxAccelerationLinear = maxAccelerationLinear
+        MaxAccelerationStrafe = maxAccelerationStrafe
+        MaxDecelerationLinear = maxDecelerationLinear
+        MaxAccelerationAngular = maxAccelerationAngular
+        MaxDecelerationAngular = maxDecelerationAngular
+        MaxSpeedLinear = maxSpeedLinear
+        MaxRollRate = maxRollRate
+        MaxRollAngle = maxRollAngle
     }
 
 
@@ -606,6 +678,11 @@ let keyValueRow (maxColumns : int) key value =
         ]
     ]
 
+let keyValueRowFloatOpt (maxColumns : int) key value =
+    value
+    |> Option.map string
+    |> Option.defaultValue "N/A"
+    |> keyValueRow maxColumns key
 
 
 let factionOutput (info : Information) =
@@ -638,10 +715,11 @@ let createCost (maxColumns : int) (info : BasePrice) = [
         ]
     ]
     
-    keyValueRow maxColumns "Credits" (info.Credits |> Option.map string |> Option.defaultValue "N/A" )
-    keyValueRow maxColumns "Metal (Tritanium)" (info.Metal |> Option.map string |> Option.defaultValue "N/A" )
-    keyValueRow maxColumns "Crystal (Dilithium)" (info.Crystal |> Option.map string |> Option.defaultValue "N/A" )
-    keyValueRow maxColumns "Build Time (seconds)"  (info.BuildTime |> Option.map string |> Option.defaultValue "N/A" )
+    keyValueRowFloatOpt maxColumns "Credits (Latinum)" info.Credits 
+    keyValueRowFloatOpt maxColumns "Metal (Tritanium)" info.Metal 
+    keyValueRowFloatOpt maxColumns "Crystal (Dilithium)" info.Crystal
+    keyValueRowFloatOpt maxColumns "Build Time (seconds)" info.BuildTime 
+    keyValueRowFloatOpt maxColumns "Supply cost"  info.SupplyCost 
 ]
 
 
@@ -656,8 +734,7 @@ let createDefenses (maxColumns : int) (info : ShipSpecifications) = [
             str "Defenses"
         ]
     ]
-    
-
+   
 
     
     if info.HullStrength.IsSome then
@@ -707,7 +784,7 @@ let createWeapons (maxColumns : int) (info : ShipSpecifications) = [
             str "Weapons"
         ]
         th [] [ 
-            str "Damage Per Second (max level)"
+            str "Damage (max level)"
         ]
         th [] [ 
             str "Range"
@@ -723,11 +800,15 @@ let createWeapons (maxColumns : int) (info : ShipSpecifications) = [
         tr [] [
             td [] [
                 let research =
-                    if weapon.RequiredReseach |> Seq.isEmpty |> not then
-                        weapon.RequiredReseach
-                        |> String.concat ", "
-                        |> sprintf "(Requires %s research)"
-                    else ""
+                    match weapon.RequiredReseach with
+                    | ResearchRequirement.Assimilation -> 
+                        "(Assimilated)"
+                    | ResearchRequirement.Research r ->
+                        if r |> Seq.isEmpty |> not then
+                            r
+                            |> String.concat ", "
+                            |> sprintf "(%s)"
+                        else ""
                 str <| $"{weapon.Name} {research}"
                 
             ]
@@ -743,16 +824,32 @@ let createWeapons (maxColumns : int) (info : ShipSpecifications) = [
             td [] [
                 weapon.WeaponBank
                 |> Seq.map(string) 
-                |> String.concat ", "
+                |> String.concat " "
                 |> str
             ]
         ]
 ]
 
-let createShuttleBay (maxColumns : int) (info : ShipSpecifications) = [
+let createSublightSpeeds (maxColumns : int) (info : ShipSpecifications) = [
     tr [] [
         th [ _colspan (string maxColumns)] [ 
-            str "Shuttlebay"
+            str "Sublight Speed"
+        ]
+    ]
+    keyValueRowFloatOpt maxColumns "Max Speed" info.MaxSpeedLinear  
+    keyValueRowFloatOpt maxColumns "Angular Acceleration" info.MaxAccelerationAngular  
+    keyValueRowFloatOpt maxColumns "Angular Deceleration" info.MaxDecelerationAngular  
+    keyValueRowFloatOpt maxColumns "Linear Acceleration" info.MaxAccelerationLinear  
+    keyValueRowFloatOpt maxColumns "Linear Deceleration" info.MaxDecelerationLinear
+    keyValueRowFloatOpt maxColumns "Strafe Acceleration" info.MaxAccelerationStrafe
+    keyValueRowFloatOpt maxColumns "Roll Rate" info.MaxRollRate
+    keyValueRowFloatOpt maxColumns "Roll Angle" info.MaxRollAngle
+]
+
+let createOther (maxColumns : int) (info : ShipSpecifications) = [
+    tr [] [
+        th [ _colspan (string maxColumns)] [ 
+            str "Other"
         ]
     ]
     let getMax (sv : ShipValue) =
@@ -766,31 +863,37 @@ let createShuttleBay (maxColumns : int) (info : ShipSpecifications) = [
         | None ->
             "0"
     keyValueRow maxColumns "Shuttles (max level)" display
+    match info.Bombing with
+    | BombingValue.SimpleBombing v->  v |> string |>  keyValueRow maxColumns "Bombing Damage" 
+    | BombingValue.NoBombingAbility -> ()
     
 ]
 
 let createInfoTable (maxColumns : int) (info : Information) =
-    table [_class "wikitable"; _align "right" ] [
-            caption [] [
-                str "Information"
-            ]
-            tr [] [
-                th [_colspan (string maxColumns)] [
-                 str info.BasicInformation.Name
+    div [_id "info-table"] [
+        table [_class "wikitable"; _align "right"; _style "margin: 2em" ] [
+                caption [] [
+                    str "Information"
                 ]
-            ]
-            tr [] [
-                td [ _colspan (string maxColumns)] [
-                    rawText $"[[File:{info.BasicInformation.Name} class.png|280px|thumbnail|center]]"
+                tr [] [
+                    th [_colspan (string maxColumns)] [
+                     str info.BasicInformation.Name
+                    ]
                 ]
-            ]
-            yield! createBasicInfo maxColumns info
-            yield! createCost maxColumns info.BasePrice
-            yield! createDefenses   maxColumns info.ShipSpecifications
-            yield! createAuxiliary   maxColumns info.ShipSpecifications
-            yield! createWeapons maxColumns info.ShipSpecifications
-            yield! createShuttleBay maxColumns info.ShipSpecifications
-        
+                tr [] [
+                    td [ _colspan (string maxColumns)] [
+                        rawText $"[[File:{info.BasicInformation.Name} class.png|280px|thumbnail|center]]"
+                    ]
+                ]
+                yield! createBasicInfo maxColumns info
+                yield! createCost maxColumns info.BasePrice
+                yield! createDefenses   maxColumns info.ShipSpecifications
+                yield! createAuxiliary   maxColumns info.ShipSpecifications
+                yield! createWeapons maxColumns info.ShipSpecifications
+                yield! createSublightSpeeds maxColumns info.ShipSpecifications
+                yield! createOther maxColumns info.ShipSpecifications
+            
+        ]
     ]
 
 
@@ -817,7 +920,8 @@ let writeHtmls (wikiInfos : Information list) =
 
 let ships =
     gameInfos
-    |> List.filter(fun f -> f.fileName.Name.Contains("F_Cap_Galaxy.entity"))
+    // |> List.filter(fun f -> f.fileName.Name.Contains("F_Cruiser_Neworleans.entity"))
+    // |> List.filter(fun f -> f.fileName.Name.Contains("F_Cap_Galaxy.entity"))
     |> List.filter(fun f -> f.entityType |> isShipO)
 
 
