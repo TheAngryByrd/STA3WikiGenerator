@@ -84,7 +84,7 @@ let percentageDecrease (increase :float) (original : float) =
     original - (increase * original)
 
 let damagePerSecond weaponDamageIncreasePerc (damagePerBank : float list) weaponCooldownDecreasePerc (preBuffCooldownTime : float) =
-    printfn $"weaponDamageIncreasePerc : {weaponDamageIncreasePerc}, damagePerBank {damagePerBank}, weaponCooldownDecreasePerc {weaponCooldownDecreasePerc}, preBuffCooldownTime {preBuffCooldownTime}"
+    // printfn $"weaponDamageIncreasePerc : {weaponDamageIncreasePerc}, damagePerBank {damagePerBank}, weaponCooldownDecreasePerc {weaponCooldownDecreasePerc}, preBuffCooldownTime {preBuffCooldownTime}"
     let damageSum = percentageIncrease weaponDamageIncreasePerc  (damagePerBank |> List.sum) 
     damageSum / (percentageDecrease weaponCooldownDecreasePerc preBuffCooldownTime)
 
@@ -146,6 +146,7 @@ type GameInfoFile = {
     member x.isCardassian = x.fileName.Name.StartsWith("C_")
     member x.isDominion = x.fileName.Name.StartsWith("D_")
     member x.isRomulan  = x.fileName.Name.StartsWith("R_")
+    member x.isMainFaction = x.isBorg || x.isCardassian || x.isFederation || x.isKlingon || x.isDominion || x.isRomulan
 
 
 
@@ -188,38 +189,14 @@ let attackTypesToArmorType = dict [
     "TITAN", "Titan"
 ]
 
+let armorTypesToAttackType = 
+    attackTypesToArmorType
+    |> Seq.map(fun kvp -> kvp.Value, kvp.Key)
+    |> dict
 
-let groupByWeakShips ships defendingShipsPredicate (attackingShip : GameInfoFile)  =
 
-    let strongAgainst =
-        attackingShip.attackTypes
-        |> List.collect(fun at -> 
-            let armorType = attackTypesToArmorType.[at]
-            ships
-            |> List.filter(defendingShipsPredicate)
-            |> List.filter(fun s -> s.armorType = Some armorType) 
-        )
-        |> List.distinctBy(fun s -> s.fileName.FullName)
-    attackingShip, strongAgainst
 
-let strongAgainstReport attackingShipsPredicate defendingShipsPredicate (ships : GameInfoFile list) =
-    ships
-    |> List.filter(attackingShipsPredicate)
-    |> List.map(groupByWeakShips ships defendingShipsPredicate)
-    |> List.sortBy(fun (ship,_) -> ship.GetEnglishName)
-    
-    |> Seq.iter(fun (ship, strongAgainst) ->
-        try
-            let dmgTypes = ship.attackTypes |> List.distinct |> String.concat ","
-            printfn $"%A{ship.GetEnglishName}, dmgTypes {dmgTypes} --> strong against" 
-            strongAgainst 
-            |>  List.sortBy(fun ship -> ship.GetEnglishName) 
-            |> List.iter(fun weakShip -> printfn $"--> %A{weakShip.GetEnglishName}" )
-        with e -> 
-            eprintfn "%A" e
-    )
 
-strongAgainstReport (fun atk -> atk.fileName.Name = "F_Cap_Galaxy.entity") (fun def -> def.isBorg)
 
 
 [<RequireQualifiedAccess>]
@@ -241,6 +218,131 @@ type BasicInformation = {
     HullType : string option
     FleetRole : string option
 }
+
+
+type WeaponBank = Front | Left | Right | Back
+[<RequireQualifiedAccessAttribute>]
+type ResearchRequirement =
+| Research of string list
+| Assimilation 
+
+type Weapon = {
+    Name : string
+    AttackType : string
+    Range : float
+    DPS : float*float
+    WeaponBank : WeaponBank list
+    RequiredReseach : ResearchRequirement
+}
+
+type BasePrice = {
+    Credits : float option
+    Metal : float option
+    Crystal : float option
+    BuildTime : float option
+    SupplyCost : float option
+}
+    with 
+        static member Empty = {
+            Credits = None
+            Metal = None
+            Crystal = None
+            BuildTime = None
+            SupplyCost = None
+        }
+
+
+
+type ShipValue = {
+    StartValue : float
+    ValueIncreasePerLevel : float
+}
+
+
+[<RequireQualifiedAccess>]
+type BombingValue = 
+| NoBombingAbility
+| SimpleBombing of float
+
+
+type Ability = {
+    Name : string
+    Description : string
+}
+
+
+
+type ShipSpecifications = {
+    HullStrength : ShipValue option
+    HullRestoreRate : ShipValue option
+    ArmorType : string
+    ArmorRating : ShipValue option
+    ShieldStrength : ShipValue option
+    ShieldMitigation : ShipValue option
+    ShieldRestoreRate : ShipValue option
+    Antimatter : ShipValue option
+    AntimatterRestoreRate : ShipValue option
+    CultureProtectRate : ShipValue option
+    Weapons : Weapon list
+    Shuttlebay : ShipValue option
+    Bombing : BombingValue
+    MaxAccelerationLinear : float option
+    MaxAccelerationStrafe : float option
+    MaxDecelerationLinear: float option
+    MaxAccelerationAngular: float option
+    MaxDecelerationAngular : float option
+    MaxSpeedLinear : float option
+    MaxRollRate : float option
+    MaxRollAngle : float option
+}
+
+
+type Information = {
+    GameInfoFile : GameInfoFile
+    BasicInformation : BasicInformation
+    ShipSpecifications : ShipSpecifications
+    Abilities : Ability list
+    BasePrice : BasePrice
+}
+
+
+type CounteringInfo = {
+    Ship : Information
+    StrongAgainst : Information list
+    WeakAgainst : Information list
+}
+
+
+
+let generateCounteringInfoForShip (ships : Information list) (attackingShip : Information)  =
+    let getAttackTypes ship =
+        ship.ShipSpecifications.Weapons
+        |> List.map(fun w -> w.AttackType)
+    let strongAgainst =
+        getAttackTypes attackingShip
+        |> List.collect(fun at -> 
+            let armorType = attackTypesToArmorType.[at]
+            ships
+            |> List.filter(fun s -> s.ShipSpecifications.ArmorType = armorType) 
+        )
+        |> List.distinctBy(fun s -> s.GameInfoFile.fileName.FullName)
+    let weakAgainst =
+        ships
+        |> List.filter(fun s ->
+            getAttackTypes s 
+            |> List.map (fun at -> attackTypesToArmorType.[at])
+            |> List.exists(fun armorType -> armorType = attackingShip.ShipSpecifications.ArmorType)
+
+        )
+    { Ship = attackingShip; StrongAgainst = strongAgainst; WeakAgainst = weakAgainst }
+
+let generateCounteringInfo (ships : Information list) =
+    ships
+    |> List.map(generateCounteringInfoForShip ships )
+    |> List.sortBy(fun ci -> ci.Ship.GameInfoFile.GetEnglishName)
+    
+
+
 
 let parseFaction (g : GameInfoFile) =
     if g.isFederation then Faction.Federation
@@ -276,36 +378,6 @@ let parseBasicInfo (g : GameInfoFile) =
         FleetRole = fleetRole
     }
 
-type WeaponBank = Front | Left | Right | Back
-[<RequireQualifiedAccessAttribute>]
-type ResearchRequirement =
-| Research of string list
-| Assimilation 
-
-type Weapon = {
-    Name : string
-    AttackType : string
-    Range : float
-    DPS : float*float
-    WeaponBank : WeaponBank list
-    RequiredReseach : ResearchRequirement
-}
-
-type BasePrice = {
-    Credits : float option
-    Metal : float option
-    Crystal : float option
-    BuildTime : float option
-    SupplyCost : float option
-}
-    with 
-        static member Empty = {
-            Credits = None
-            Metal = None
-            Crystal = None
-            BuildTime = None
-            SupplyCost = None
-        }
 
 let parseBasePrice (g : GameInfoFile) =
         let linesJoined = g.lines |> String.concat Environment.NewLine
@@ -326,11 +398,6 @@ let parseBasePrice (g : GameInfoFile) =
 
 
 
-
-type ShipValue = {
-    StartValue : float
-    ValueIncreasePerLevel : float
-}
 
 let parseShipValue  (lines : string array) (attribute : string) =
     let linesJoined = lines |> String.concat Environment.NewLine
@@ -398,7 +465,7 @@ let parseWeapon (g : GameInfoFile) =
         let weaponCooldownDecreasePerc = parseShipValue g.lines "weaponCooldownDecreasePerc"
         let weaponDamageIncreasePerc = parseShipValue g.lines "weaponDamageIncreasePerc"
 
-        printfn $"parseDps --> weaponCooldownDecreasePerc :{weaponCooldownDecreasePerc}, weaponDamageIncreasePerc: {weaponDamageIncreasePerc}"
+        // printfn $"parseDps --> weaponCooldownDecreasePerc :{weaponCooldownDecreasePerc}, weaponDamageIncreasePerc: {weaponDamageIncreasePerc}"
 
         let init = damagePerSecond 0.0 [front;back;left;right] 0.0 cooldown
         let max =
@@ -471,35 +538,6 @@ let parseWeapon (g : GameInfoFile) =
     |> Seq.map parseWeapon
     |> Seq.toList
     
-[<RequireQualifiedAccess>]
-type BombingValue = 
-| NoBombingAbility
-| SimpleBombing of float
-
-type ShipSpecifications = {
-    HullStrength : ShipValue option
-    HullRestoreRate : ShipValue option
-    ArmorType : string
-    ArmorRating : ShipValue option
-    ShieldStrength : ShipValue option
-    ShieldMitigation : ShipValue option
-    ShieldRestoreRate : ShipValue option
-    Antimatter : ShipValue option
-    AntimatterRestoreRate : ShipValue option
-    CultureProtectRate : ShipValue option
-    Weapons : Weapon list
-    Shuttlebay : ShipValue option
-    Bombing : BombingValue
-    MaxAccelerationLinear : float option
-    MaxAccelerationStrafe : float option
-    MaxDecelerationLinear: float option
-    MaxAccelerationAngular: float option
-    MaxDecelerationAngular : float option
-    MaxSpeedLinear : float option
-    MaxRollRate : float option
-    MaxRollAngle : float option
-}
-
 
 
 
@@ -594,10 +632,6 @@ let parseShipSpecifications (g : GameInfoFile) =
     }
 
 
-type Ability = {
-    Name : string
-    Description : string
-}
 
 let isNotNullOrWhiteSpace = String.IsNullOrWhiteSpace >> not
 
@@ -621,13 +655,6 @@ let parseAbility (g : GameInfoFile) =
         |> Option.map(fun g -> {Name = g.GetEnglishName; Description = g.GetEnglishDesc })
     )
 
-type Information = {
-    GameInfoFile : GameInfoFile
-    BasicInformation : BasicInformation
-    ShipSpecifications : ShipSpecifications
-    Abilities : Ability list
-    BasePrice : BasePrice
-}
 
 let parseInformation (g : GameInfoFile) =
     let basicInfo = parseBasicInfo g
@@ -854,11 +881,10 @@ let createOther (maxColumns : int) (info : ShipSpecifications) = [
     ]
     let getMax (sv : ShipValue) =
         sv.StartValue + (sv.ValueIncreasePerLevel * maxAdditionalLevels)
-    let display =
+    let display = 
         match info.Shuttlebay with
         | Some sb -> 
-            let init = sb.StartValue |> Math.Floor
-            let max = getMax sb |> Math.Floor
+            let init, max = initValueAndMax sb
             $"{init} ({max})"
         | None ->
             "0"
@@ -897,7 +923,7 @@ let createInfoTable (maxColumns : int) (info : Information) =
     ]
 
 
-let writeHtmls (wikiInfos : Information list) =
+let writeInfoTableHtmls (wikiInfos : Information list) =
 
     let wikiTablesPath = IO.Path.Join(__SOURCE_DIRECTORY__,"wiki-tables")
     if IO.Directory.Exists(wikiTablesPath) then
@@ -915,13 +941,106 @@ let writeHtmls (wikiInfos : Information list) =
         IO.File.WriteAllText(outputPath, formattedHtml)
         
     )
-    printfn $"Wrote to {wikiTablesPath}"
+    printfn $"Wrote info tables to {wikiTablesPath}"
+
+
+
+
+let writeCounterHtmlTables (counterShipReport : CounteringInfo list) =
+    
+    let generateJaggedTable (infos : Information list) =
+        infos
+        |> List.map(fun i ->
+            i.BasicInformation.Faction,
+                td [] [
+                    if i.BasicInformation.Faction = Faction.Klingon && i.BasicInformation.Name.Contains("Raptor") then
+                        str <| sprintf "[[%s(K)]]" i.BasicInformation.Name
+                    else str <| sprintf "[[%s]]" i.BasicInformation.Name
+                ]
+        )
+        |>(fun nodes -> 
+            nodes
+            |> List.groupBy(fst)
+            |> List.map(fun (faction, nodes) ->
+                let headers = th [] [ str <| sprintf "%A" faction]
+                let nodes = nodes |> List.map snd |> List.distinct
+                (headers, nodes)
+            )
+        )|> fun nodes ->
+            let headers = nodes |> List.map fst |> tr []
+            let dataRows = nodes |> List.map snd 
+            let maxJaggedRow = 
+                try
+                    dataRows |> List.map List.length |> List.max
+                with _ -> 0
+            let rows = [
+                for i=0 to maxJaggedRow - 1 do 
+                    [
+                        for dataRow in dataRows do
+                            match dataRow |> List.tryItem i with
+                            | Some node -> node
+                            | None -> td [] []
+                    ] |> tr []
+            ]
+            table [_class "wikitable"] [
+                headers
+                yield! rows
+            ]
+
+    let counterTablesPath = IO.Path.Join(__SOURCE_DIRECTORY__,"counter-tables")
+    if IO.Directory.Exists(counterTablesPath) then
+        IO.Directory.Delete(counterTablesPath,true)
+    IO.Directory.CreateDirectory(counterTablesPath) |> ignore
+    counterShipReport
+    |> List.iter(fun ci ->
+        let strongAgainstNodes = ci.StrongAgainst |> generateJaggedTable
+        let strongAgainstFormattedHtml =   
+            strongAgainstNodes 
+            |> RenderView.AsString.htmlNode
+            |> System.Xml.Linq.XElement.Parse
+            |> string
+            
+        let weakAgainstNodes = ci.WeakAgainst |> generateJaggedTable
+        let weakAgainstFormattedHtml =   
+            weakAgainstNodes 
+            |> RenderView.AsString.htmlNode
+            |> System.Xml.Linq.XElement.Parse
+            |> string
+        let finalOutput = $"""
+==Countering==
+
+Each ship has a [[Damage Types|attack type]] and an [[Damage Types|armor type]] (some have 2 attack types) which determine what ships it deals a lot of damage against and which ships it takes a lot of damage from.
+
+===Strong Against===
+
+Here is a list of ships this ship is strong against:
+
+{strongAgainstFormattedHtml}
+
+===Weak Against===
+
+Here is a list of ships this ship is weak against:
+
+{weakAgainstFormattedHtml}
+"""
+        let outputPath = IO.Path.Join(counterTablesPath, ci.Ship.GameInfoFile.fileName.Name.Replace(".entity", "-counter-table.html"))
+        IO.File.WriteAllText(outputPath, finalOutput)
+    )
+    printfn $"Wrote counter tables to {counterTablesPath}"
 
 
 let ships =
     gameInfos
-    // |> List.filter(fun f -> f.fileName.Name.Contains("F_Cruiser_Neworleans.entity"))
-    // |> List.filter(fun f -> f.fileName.Name.Contains("F_Cap_Galaxy.entity"))
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("Tutorial.entity")) // Tutorial
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("_flagship")) //unsure
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("F_Support_Polaris")) // Ship ability clone
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("C_Support_DomDread")) // Ship ability clone
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("C_Support_Hydra")) // Ship ability clone
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("AI.entity")) // AI ships
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("_Coop_")) //unsure
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("_Holo_")) //holo ships
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("C_Cruiser_SonaBattleship")) //replaced by C_Cap_JalakSu 
+    |> List.filter(fun f -> not <| f.fileName.Name.Contains("F_Frigate_Nova")) //replaced by C_Cap_JalakSu 
     |> List.filter(fun f -> f.entityType |> isShipO)
 
 
@@ -930,4 +1049,11 @@ let wikiInfos =
     ships
     |> List.map parseInformation
 
-writeHtmls wikiInfos
+// writeInfoTableHtmls wikiInfos
+
+let counterShipReport =
+    wikiInfos
+    |> List.filter(fun s -> s.GameInfoFile.isMainFaction)
+    |> generateCounteringInfo 
+
+writeCounterHtmlTables counterShipReport
