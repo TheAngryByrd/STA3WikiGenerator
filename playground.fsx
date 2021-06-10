@@ -317,6 +317,7 @@ type CounteringInfo = {
 let generateCounteringInfoForShip (ships : Information list) (attackingShip : Information)  =
     let getAttackTypes ship =
         ship.ShipSpecifications.Weapons
+        |> List.filter(fun w -> w.RequiredReseach <> ResearchRequirement.Assimilation )
         |> List.map(fun w -> w.AttackType)
     let strongAgainst =
         getAttackTypes attackingShip
