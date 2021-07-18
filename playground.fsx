@@ -128,7 +128,7 @@ type GameInfoFile = {
             lines = lines
             entityType = selectOne "entityType" lines
             nameString = selectOne "NameStringID" lines
-            descString = selectOne "descStringID" lines            
+            descString = selectOne "descStringID" lines |> Option.orElse (selectOne "DescriptionStringID" lines)          
             armorType = selectOne "armorType" lines
             attackTypes = selectMany "AttackType" lines
         }
@@ -153,21 +153,50 @@ type GameInfoFile = {
 let readFile (f : IO.FileInfo) =
     GameInfoFile.Create(f, IO.File.ReadAllLines f.FullName)
 
+type SearchType =
+| Equals of string
+| EqualsI of string
+| StartsWith of String
 
 let shipEntityTypes = [
-    "Frigate"
-    "CapitalShip"
-    "Titan"
-    "Fighter"
+    Equals "Frigate"
+    Equals"CapitalShip"
+    Equals "Titan"
+    Equals "Fighter"
     // "EntryVehicle"
 ]
 
 let isShip(entityType : string) =
-    shipEntityTypes |> Seq.contains entityType
+    shipEntityTypes |> Seq.exists (fun t ->
+        match t with
+        | Equals eq -> eq = entityType
+        | EqualsI eq -> eq.Equals(entityType, StringComparison.InvariantCultureIgnoreCase)
+        | StartsWith sw -> entityType.StartsWith sw
+    )
+
 
 let isShipO(entityType : string option) =
     entityType
     |> Option.exists(isShip)
+
+let buildingTypes = [
+    StartsWith "PlanetModule"
+    EqualsI "StarBase"
+]
+
+
+let isBuilding(entityType : string) =
+    buildingTypes |> Seq.exists (fun t ->
+        match t with
+        | Equals eq -> eq = entityType
+        | EqualsI eq -> eq.Equals(entityType, StringComparison.InvariantCultureIgnoreCase)
+        | StartsWith sw -> entityType.StartsWith sw
+    )
+
+
+let isBuildingO(entityType : string option) =
+    entityType
+    |> Option.exists(isBuilding)
 
 let gameInfos = 
     GameFiles.gameInfoPath.EnumerateFiles("*.entity")
@@ -189,15 +218,6 @@ let attackTypesToArmorType = dict [
     "TITAN", "Titan"
 ]
 
-let armorTypesToAttackType = 
-    attackTypesToArmorType
-    |> Seq.map(fun kvp -> kvp.Value, kvp.Key)
-    |> dict
-
-
-
-
-
 
 [<RequireQualifiedAccess>]
 type Faction = // File beginning character
@@ -214,6 +234,7 @@ type Faction = // File beginning character
 
 type BasicInformation = {
     Name : string
+    Description : string
     Faction : Faction
     HullType : string option
     FleetRole : string option
@@ -232,7 +253,7 @@ type Weapon = {
     Range : float
     DPS : float*float
     WeaponBank : WeaponBank list
-    RequiredReseach : ResearchRequirement
+    RequiredResearch : ResearchRequirement
 }
 
 type BasePrice = {
@@ -317,7 +338,7 @@ type CounteringInfo = {
 let generateCounteringInfoForShip (ships : Information list) (attackingShip : Information)  =
     let getAttackTypes ship =
         ship.ShipSpecifications.Weapons
-        |> List.filter(fun w -> w.RequiredReseach <> ResearchRequirement.Assimilation )
+        |> List.filter(fun w -> w.RequiredResearch <> ResearchRequirement.Assimilation )
         |> List.map(fun w -> w.AttackType)
     let strongAgainst =
         getAttackTypes attackingShip
@@ -374,6 +395,7 @@ let parseBasicInfo (g : GameInfoFile) =
 
     {
         Name = g.GetEnglishName
+        Description = g.GetEnglishDesc
         Faction = faction
         HullType = hullType
         FleetRole = fleetRole
@@ -385,7 +407,7 @@ let parseBasePrice (g : GameInfoFile) =
         let stringInfoParser = $"basePrice(\n|\r|\r\n)\s+credits\s+(?<credits>\d+.\d+)(\n|\r|\r\n)\s+metal\s+(?<metal>\d+.\d+)(\n|\r|\r\n)\s+crystal\s+(?<crystal>\d+.\d+)"
         let bp = { BasePrice.Empty 
                     with 
-                        BuildTime = selectOneFloat "BuildTime" g.lines
+                        BuildTime = selectOneFloat "BuildTime" g.lines |> Option.orElse(selectOneFloat "baseBuildTime" g.lines) |> Option.orElse(selectOneFloat "fighterConstructionTime" g.lines)
                         SupplyCost = selectOneFloat "slotCount" g.lines }
         Regex.Matches(linesJoined, stringInfoParser,RegexOptions.Multiline) 
         |> Seq.tryHead
@@ -531,7 +553,7 @@ let parseWeapon (g : GameInfoFile) =
             Range = range
             DPS = dps
             WeaponBank =  banks
-            RequiredReseach = requiredReseach
+            RequiredResearch = requiredReseach
         }
         
     lines
@@ -828,7 +850,7 @@ let createWeapons (maxColumns : int) (info : ShipSpecifications) = [
         tr [] [
             td [] [
                 let research =
-                    match weapon.RequiredReseach with
+                    match weapon.RequiredResearch with
                     | ResearchRequirement.Assimilation -> 
                         "(Assimilated)"
                     | ResearchRequirement.Research r ->
@@ -923,10 +945,9 @@ let createInfoTable (maxColumns : int) (info : Information) =
         ]
     ]
 
-
+let wikiTablesPath = IO.Path.Join(__SOURCE_DIRECTORY__,"wiki-tables")
 let writeInfoTableHtmls (wikiInfos : Information list) =
 
-    let wikiTablesPath = IO.Path.Join(__SOURCE_DIRECTORY__,"wiki-tables")
     if IO.Directory.Exists(wikiTablesPath) then
         IO.Directory.Delete(wikiTablesPath,true)
     IO.Directory.CreateDirectory(wikiTablesPath) |> ignore
@@ -944,9 +965,67 @@ let writeInfoTableHtmls (wikiInfos : Information list) =
     )
     printfn $"Wrote info tables to {wikiTablesPath}"
 
+let renderNodesO node =
+    node
+    |> Option.map(
+        RenderView.AsString.htmlNode
+        >> System.Xml.Linq.XElement.Parse
+        >> string
+    )
+    |> Option.defaultValue ""
+
+let abilitiesTablePath = IO.Path.Join(__SOURCE_DIRECTORY__,"entity-ability-tables")
+let writeEntityAbilitiesTableHtmls (infos : Information list) =
+
+    
+    if IO.Directory.Exists(abilitiesTablePath) then
+        IO.Directory.Delete(abilitiesTablePath,true)
+    IO.Directory.CreateDirectory(abilitiesTablePath) |> ignore
+    
+    let writeAbilities (abilities : Ability list) =
+        if List.length abilities > 0 then
+            table [_class "wikitable"] [
+                tr [] [
+                    th [] [ str "Name" ]
+                    th [] [ str "Description" ]
+                ]
+                for a in abilities do
+                    tr [] [
+                        td [] [
+                            str $"[[{a.Name}]]"
+                        ]
+                        td [] [
+                            str a.Description
+                        ]
+                ]
+            ]
+            |> Some
+        else 
+            None
+
+    infos
+    |> List.iter(fun i ->
+        let htmlTable =
+            match writeAbilities i.Abilities with
+            | Some node ->
+                let output =
+                    node
+                    |> RenderView.AsString.htmlNode
+                    |> System.Xml.Linq.XElement.Parse
+                    |> string 
+                sprintf """
+==Abilities==
+%s
+"""             
+                    output
+            | None -> ""
+        let outputPath = IO.Path.Join(abilitiesTablePath, i.GameInfoFile.fileName.Name.Replace(".entity", "-entity-ability-table.html"))
+        IO.File.WriteAllText(outputPath, htmlTable)
+    )
 
 
 
+let counterTablesPath = IO.Path.Join(__SOURCE_DIRECTORY__,"counter-tables")
 let writeCounterHtmlTables (counterShipReport : CounteringInfo list) =
     
     let generateJaggedTable (infos : Information list) =
@@ -983,44 +1062,57 @@ let writeCounterHtmlTables (counterShipReport : CounteringInfo list) =
                             | None -> td [] []
                     ] |> tr []
             ]
-            table [_class "wikitable"] [
-                headers
-                yield! rows
-            ]
+            if List.length rows > 0 then
+                table [_class "wikitable"] [
+                    headers
+                    yield! rows
+                ]
+                |> Some
+            else 
+                None
 
-    let counterTablesPath = IO.Path.Join(__SOURCE_DIRECTORY__,"counter-tables")
+    
     if IO.Directory.Exists(counterTablesPath) then
         IO.Directory.Delete(counterTablesPath,true)
     IO.Directory.CreateDirectory(counterTablesPath) |> ignore
     counterShipReport
     |> List.iter(fun ci ->
         let strongAgainstNodes = ci.StrongAgainst |> generateJaggedTable
-        let strongAgainstFormattedHtml =   
-            strongAgainstNodes 
-            |> RenderView.AsString.htmlNode
-            |> System.Xml.Linq.XElement.Parse
-            |> string
-            
+        let strongAgainstFormattedHtml =  
+            let html = 
+                strongAgainstNodes |> renderNodesO
+            if html |> isNotNullOrWhiteSpace then
+                sprintf """
+===Strong Against===
+
+This does extra damage against these:
+
+%s
+""" 
+                    html
+            else
+                ""
         let weakAgainstNodes = ci.WeakAgainst |> generateJaggedTable
-        let weakAgainstFormattedHtml =   
-            weakAgainstNodes 
-            |> RenderView.AsString.htmlNode
-            |> System.Xml.Linq.XElement.Parse
-            |> string
+        let weakAgainstFormattedHtml =
+            let html =  weakAgainstNodes |> renderNodesO
+
+            if html |> isNotNullOrWhiteSpace then
+                sprintf """
+===Weak Against===
+
+This list does extra damage against this:
+
+%s
+""" 
+                    html
+            else
+                ""
         let finalOutput = $"""
 ==Countering==
 
 Each ship has a [[Damage Types|attack type]] and an [[Damage Types|armor type]] (some have 2 attack types) which determine what ships it deals a lot of damage against and which ships it takes a lot of damage from.
 
-===Strong Against===
-
-Here is a list of ships this ship is strong against:
-
 {strongAgainstFormattedHtml}
-
-===Weak Against===
-
-Here is a list of ships this ship is weak against:
 
 {weakAgainstFormattedHtml}
 """
@@ -1042,15 +1134,22 @@ let ships =
     |> List.filter(fun f -> not <| f.fileName.Name.Contains("_Holo_")) //holo ships
     |> List.filter(fun f -> not <| f.fileName.Name.Contains("C_Cruiser_SonaBattleship")) //replaced by C_Cap_JalakSu 
     |> List.filter(fun f -> not <| f.fileName.Name.Contains("F_Frigate_Nova")) //replaced by C_Cap_JalakSu 
-    |> List.filter(fun f -> f.entityType |> isShipO)
+    |> List.filter(fun f -> f.entityType |> isShipO || f.entityType |> isBuildingO)
 
 
+// Get all entity types
+gameInfos
+|> Seq.map(fun g -> g.entityType)
+|> Seq.distinct
+|> Seq.iter(printfn "%A")
 
 let wikiInfos =
     ships
     |> List.map parseInformation
 
-// writeInfoTableHtmls wikiInfos
+writeInfoTableHtmls wikiInfos
+
+writeEntityAbilitiesTableHtmls wikiInfos
 
 let counterShipReport =
     wikiInfos
@@ -1058,3 +1157,91 @@ let counterShipReport =
     |> generateCounteringInfo 
 
 writeCounterHtmlTables counterShipReport
+
+let writeNewTemplate (infos : Information list) =
+    let getFileByInfo path info =
+        IO.DirectoryInfo(path).EnumerateFiles() 
+        |> Seq.tryFind(fun f -> f.Name.Contains(info.GameInfoFile.fileName.Name.Replace(".entity", "")))
+        |> Option.map(fun fi -> IO.File.ReadAllText fi.FullName)
+        |> Option.defaultValue ""
+
+    let newTemplatesPath =  IO.Path.Join(__SOURCE_DIRECTORY__,"new-templates")
+    if IO.Directory.Exists(newTemplatesPath) then
+        IO.Directory.Delete(newTemplatesPath,true)
+    IO.Directory.CreateDirectory(newTemplatesPath) |> ignore
+    for info in infos do
+        let faction = factionOutput info
+        let hullType = info.BasicInformation.HullType
+        let fleetRole =
+            info.BasicInformation.FleetRole
+            |> Option.orElse hullType
+            |> Option.defaultValue ""
+        let infoTable = getFileByInfo wikiTablesPath info
+        let abilities =  getFileByInfo abilitiesTablePath info
+        let countering = getFileByInfo counterTablesPath info
+        let categories = 
+            let mainCategory = 
+                if info.GameInfoFile.entityType |> isBuildingO then
+                    "[[Category:Building Types]]"
+                elif info.GameInfoFile.entityType |> isShipO then
+                    "[[Category:Ship classes]]"
+                else 
+                    "[[Category:Other]]"
+            let subCategory =
+                info.BasicInformation.FleetRole
+                |> Option.orElse info.BasicInformation.HullType
+                |> Option.map(sprintf "[[Category:%s]]")
+                |> Option.defaultValue ""
+            $"""
+{mainCategory}
+{subCategory}
+"""
+        let finalOutput = $"""
+The '''{{{{PAGENAME}}}}''' is a {faction} {fleetRole}.
+
+{infoTable}
+
+
+==Description==
+
+{info.BasicInformation.Description}
+
+{abilities}
+
+{countering}
+
+==Gallery==
+
+{categories}
+
+"""
+        
+        let outputPath = IO.Path.Join(newTemplatesPath, info.GameInfoFile.fileName.Name.Replace(".entity", "-new-template.html"))
+        IO.File.WriteAllText(outputPath, finalOutput)
+    
+    printfn $"Wrote counter tables to {newTemplatesPath}"
+
+writeNewTemplate wikiInfos
+
+
+let armorWeaponCSVReport (infos : Information list) =
+    let newTemplatesPath =  IO.Path.Join(__SOURCE_DIRECTORY__,"armor-weapon-report")
+    if IO.Directory.Exists(newTemplatesPath) then
+        IO.Directory.Delete(newTemplatesPath,true)
+    IO.Directory.CreateDirectory(newTemplatesPath) |> ignore
+    let csvFile = IO.Path.Join(newTemplatesPath, "armor-weapon-report.csv")
+    for i in infos do
+        let entityFile = i.GameInfoFile.fileName.Name
+        let armorType = i.ShipSpecifications.ArmorType
+        let weapons =
+            i.ShipSpecifications.Weapons
+            |> Seq.map(fun w -> w.AttackType)
+            |> Seq.distinct
+            |> String.concat ", "
+        let output = 
+            [entityFile; armorType; weapons] 
+            |> Seq.filter(String.IsNullOrWhiteSpace >> not) 
+            |> String.concat ", "
+        IO.File.AppendAllLines(csvFile,[output])
+        
+armorWeaponCSVReport wikiInfos
