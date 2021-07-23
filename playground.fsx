@@ -1223,7 +1223,14 @@ The '''{{{{PAGENAME}}}}''' is a {faction} {fleetRole}.
 
 writeNewTemplate wikiInfos
 
-
+let pad (amt: int) (elem: 'a) (list: 'a list) : 'a list =
+    if amt >=0 then list @ (List.replicate amt elem)
+    else list
+let fill (total:int) (elem: 'a) (list: 'a list) =
+    if List.length list >= total then
+        list
+    else
+        pad (total - List.length list) elem list
 let armorWeaponCSVReport (infos : Information list) =
     let newTemplatesPath =  IO.Path.Join(__SOURCE_DIRECTORY__,"armor-weapon-report")
     if IO.Directory.Exists(newTemplatesPath) then
@@ -1236,12 +1243,12 @@ let armorWeaponCSVReport (infos : Information list) =
         let armorType = i.ShipSpecifications.ArmorType
         let weapons =
             i.ShipSpecifications.Weapons
-            |> Seq.map(fun w -> w.AttackType)
-            |> Seq.distinct
+            |> List.map(fun w -> w.AttackType)
+            |> List.distinct
+            |> fill 3 ""
             |> String.concat ", "
         let output = 
-            [entityFile; armorType; weapons] 
-            |> Seq.filter(String.IsNullOrWhiteSpace >> not) 
+            [entityFile; armorType; weapons]             
             |> String.concat ", "
         IO.File.AppendAllLines(csvFile,[output])
         

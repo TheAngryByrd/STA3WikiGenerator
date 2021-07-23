@@ -1,499 +1,499 @@
 Entity, Armor Type, Weapon Type 1, Weapon Type 2, Weapon Type 3
-Baj_Freighter_Hammerhead.entity, Light
-Baj_station_traderefinery.entity, Module
-B_Cap_Cube.entity, CapitalShip, COMPOSITE
-B_Cap_Diamond.entity, CapitalShip, COMPOSITE
-B_Cap_TacSphere.entity, CapitalShip, COMPOSITE
-B_Cap_TactCube.entity, CapitalShip, COMPOSITE
-B_Cap_Trapezoid.entity, CapitalShip, COMPOSITE
-B_Colony.entity, Light
-B_Corvette_Dart.entity, Light, ANTILIGHT
-B_Cruiser_Pyramid.entity, Heavy, ANTIMEDIUM
-B_Cruiser_Sphere.entity, VeryHeavy, ANTIVERYHEAVY
-B_Cruiser_Wedge.entity, VeryHeavy, ANTIMODULE
-B_Flak_Dodecahedron.entity, Heavy, ANTIVERYLIGHT
-B_Freighter_Cargo.entity, Light
-B_Freighter_Trade.entity, Light
-B_Frigate_Interceptor.entity, VeryLight, ANTIMEDIUM
-B_Hero_7of9.entity, CapitalShip, COMPOSITE
-B_Hero_Locutus.entity, CapitalShip, COMPOSITE
-B_Hero_Queen.entity, CapitalShip, COMPOSITE
-B_Homeworld_Misc_UniAssembler.entity, Heavy
-B_Homeworld_Starbase_Unicomplex.entity, Module, COMPOSITE
-B_Misc_Assembler.entity, Light
-B_Misc_UniAssembler.entity, Heavy
-B_ProjProbe.entity, Heavy, COMPOSITE
-B_Scout_Detector.entity, Light, ANTIVERYLIGHT
-B_Siege_Obelisk.entity, Heavy, ANTIHEAVY, ANTIVERYHEAVY
-B_Starbase_Unicomplex.entity, Module, COMPOSITE
-B_Station_AssimTurret.entity, VeryHeavy
-B_Station_Cubeyard.entity, VeryHeavy
-B_Station_DilithiumMine.entity, Heavy
-B_station_heostation.entity, Module
-B_Station_Interlink_Matrix.entity, Light
-B_Station_RepairNode.entity, Medium
-B_Station_Research_Adapted.entity, Light
-B_Station_Research_Assimilated.entity, Light
-B_Station_Resourcenode.entity, Heavy
-B_Station_Shipyard.entity, VeryHeavy
-B_Station_TitanYard.entity, VeryHeavy
-B_Station_Transwarp_Gate.entity, Module
-B_Station_TritaniumMine.entity, Heavy
+Baj_Freighter_Hammerhead.entity, Light, , , 
+Baj_station_traderefinery.entity, Module, , , 
+B_Cap_Cube.entity, CapitalShip, COMPOSITE, , 
+B_Cap_Diamond.entity, CapitalShip, COMPOSITE, , 
+B_Cap_TacSphere.entity, CapitalShip, COMPOSITE, , 
+B_Cap_TactCube.entity, CapitalShip, COMPOSITE, , 
+B_Cap_Trapezoid.entity, CapitalShip, COMPOSITE, , 
+B_Colony.entity, Light, , , 
+B_Corvette_Dart.entity, Light, ANTILIGHT, , 
+B_Cruiser_Pyramid.entity, Heavy, ANTIMEDIUM, , 
+B_Cruiser_Sphere.entity, VeryHeavy, ANTIVERYHEAVY, , 
+B_Cruiser_Wedge.entity, VeryHeavy, ANTIMODULE, , 
+B_Flak_Dodecahedron.entity, Heavy, ANTIVERYLIGHT, , 
+B_Freighter_Cargo.entity, Light, , , 
+B_Freighter_Trade.entity, Light, , , 
+B_Frigate_Interceptor.entity, VeryLight, ANTIMEDIUM, , 
+B_Hero_7of9.entity, CapitalShip, COMPOSITE, , 
+B_Hero_Locutus.entity, CapitalShip, COMPOSITE, , 
+B_Hero_Queen.entity, CapitalShip, COMPOSITE, , 
+B_Homeworld_Misc_UniAssembler.entity, Heavy, , , 
+B_Homeworld_Starbase_Unicomplex.entity, Module, COMPOSITE, , 
+B_Misc_Assembler.entity, Light, , , 
+B_Misc_UniAssembler.entity, Heavy, , , 
+B_ProjProbe.entity, Heavy, COMPOSITE, , 
+B_Scout_Detector.entity, Light, ANTIVERYLIGHT, , 
+B_Siege_Obelisk.entity, Heavy, ANTIHEAVY, ANTIVERYHEAVY, 
+B_Starbase_Unicomplex.entity, Module, COMPOSITE, , 
+B_Station_AssimTurret.entity, VeryHeavy, , , 
+B_Station_Cubeyard.entity, VeryHeavy, , , 
+B_Station_DilithiumMine.entity, Heavy, , , 
+B_station_heostation.entity, Module, , , 
+B_Station_Interlink_Matrix.entity, Light, , , 
+B_Station_RepairNode.entity, Medium, , , 
+B_Station_Research_Adapted.entity, Light, , , 
+B_Station_Research_Assimilated.entity, Light, , , 
+B_Station_Resourcenode.entity, Heavy, , , 
+B_Station_Shipyard.entity, VeryHeavy, , , 
+B_Station_TitanYard.entity, VeryHeavy, , , 
+B_Station_Transwarp_Gate.entity, Module, , , 
+B_Station_TritaniumMine.entity, Heavy, , , 
 B_Station_Turret.entity, VeryHeavy, ANTILIGHT, ANTIHEAVY, ANTIVERYHEAVY
-B_Support_Adaptor.entity, Heavy, ANTIMEDIUM
-B_Support_Assimilator.entity, Heavy, ANTIHEAVY
-B_Titan_Progenitor.entity, Titan, COMPOSITE
-CAPITALSHIP_TECHCOLONY.entity, VeryHeavy, ANTIMEDIUM, ANTIHEAVY
-C_Cap_Archon.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_Domwarship.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_Hydra.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_JalakSu.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_Jannisary.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_Keldon.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_KessokHeavy.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_Kulinor.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_Legate.entity, CapitalShip, ANTIVERYHEAVY
-C_Cap_StrikeCruiser.entity, CapitalShip, ANTIVERYHEAVY
-C_Colony.entity, Light
-C_Corvette_Conservator.entity, Light, ANTIVERYLIGHT
-C_Corvette_Scarab.entity, Light, ANTIHEAVY
-C_Cruiser_Darhe'el.entity, Heavy, ANTIMODULE
-C_Cruiser_Galor.entity, Heavy, ANTIHEAVY
-C_Cruiser_KessokHybrid.entity, Heavy, ANTIMEDIUM
-C_Cruiser_KessokLight.entity, Heavy, ANTIHEAVY
-C_Cruiser_SonaRuffalo.entity, VeryLight, ANTIVERYHEAVY
-C_DreadMissile_Titan.entity, VeryHeavy
-C_Envoy_Corat.entity, Light, ANTIMEDIUM
-C_Fighter_Bentar.entity, VeryLight, ANTIMODULE
-C_Fighter_Bentar_elite.entity, VeryLight, ANTIMODULE
-C_Fighter_Trelkor.entity, VeryLight, ANTIVERYLIGHT
-C_Fighter_Trelkor_elite.entity, VeryLight, ANTIVERYLIGHT
-C_Flak_Ocett.entity, Medium, ANTIVERYLIGHT
-C_Freighter_Cargo.entity, Light
-C_Freighter_Trade.entity, Light
-C_FrigateCombatNorin.entity, Medium, COMPOSITE
-C_FrigateCombatTurret.entity, Titan, ANTIVERYHEAVY
-C_Frigate_Rasilak.entity, VeryLight, ANTIMEDIUM
-C_Gunboat_Hideki.entity, Light, COMPOSITE
-C_Gunboat_Hideki_elite.entity, Light, COMPOSITE
-C_HeavyCruiser_Rahtar.entity, VeryHeavy, ANTIHEAVY
-C_Hero_Dukat.entity, CapitalShip, ANTIVERYHEAVY
-C_Hero_Kentar.entity, CapitalShip, ANTIVERYHEAVY
-C_Hero_Madred.entity, CapitalShip, ANTIVERYHEAVY
-C_Hero_thotgor.entity, CapitalShip, ANTIVERYHEAVY
-C_Hero_weyoun.entity, CapitalShip, ANTIVERYHEAVY
-C_Homeworld_Misc_SBcons.entity, Heavy
-C_Homeworld_Starbase_Nor.entity, Module, ANTIMEDIUM, ANTIVERYHEAVY
-C_Isolytic_Weapon.entity, Light
-C_LongRange_Vasad.entity, Light, ANTIVERYHEAVY
-C_Metreon_Weapon.entity, Light
-C_Misc_Constructionship.entity, Light
-C_Misc_SBcons.entity, Heavy
-C_Scout_Hideki.entity, VeryLight, ANTILIGHT
-C_SiegeTurret.entity, VeryHeavy
-C_Siege_BreenScout.entity, Medium, ANTIMEDIUM
-C_Siege_Korinas.entity, Light, ANTIVERYHEAVY
-C_Siege_Moset.entity, Medium, ANTILIGHT
+B_Support_Adaptor.entity, Heavy, ANTIMEDIUM, , 
+B_Support_Assimilator.entity, Heavy, ANTIHEAVY, , 
+B_Titan_Progenitor.entity, Titan, COMPOSITE, , 
+CAPITALSHIP_TECHCOLONY.entity, VeryHeavy, ANTIMEDIUM, ANTIHEAVY, 
+C_Cap_Archon.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_Domwarship.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_Hydra.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_JalakSu.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_Jannisary.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_Keldon.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_KessokHeavy.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_Kulinor.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_Legate.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Cap_StrikeCruiser.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Colony.entity, Light, , , 
+C_Corvette_Conservator.entity, Light, ANTIVERYLIGHT, , 
+C_Corvette_Scarab.entity, Light, ANTIHEAVY, , 
+C_Cruiser_Darhe'el.entity, Heavy, ANTIMODULE, , 
+C_Cruiser_Galor.entity, Heavy, ANTIHEAVY, , 
+C_Cruiser_KessokHybrid.entity, Heavy, ANTIMEDIUM, , 
+C_Cruiser_KessokLight.entity, Heavy, ANTIHEAVY, , 
+C_Cruiser_SonaRuffalo.entity, VeryLight, ANTIVERYHEAVY, , 
+C_DreadMissile_Titan.entity, VeryHeavy, , , 
+C_Envoy_Corat.entity, Light, ANTIMEDIUM, , 
+C_Fighter_Bentar.entity, VeryLight, ANTIMODULE, , 
+C_Fighter_Bentar_elite.entity, VeryLight, ANTIMODULE, , 
+C_Fighter_Trelkor.entity, VeryLight, ANTIVERYLIGHT, , 
+C_Fighter_Trelkor_elite.entity, VeryLight, ANTIVERYLIGHT, , 
+C_Flak_Ocett.entity, Medium, ANTIVERYLIGHT, , 
+C_Freighter_Cargo.entity, Light, , , 
+C_Freighter_Trade.entity, Light, , , 
+C_FrigateCombatNorin.entity, Medium, COMPOSITE, , 
+C_FrigateCombatTurret.entity, Titan, ANTIVERYHEAVY, , 
+C_Frigate_Rasilak.entity, VeryLight, ANTIMEDIUM, , 
+C_Gunboat_Hideki.entity, Light, COMPOSITE, , 
+C_Gunboat_Hideki_elite.entity, Light, COMPOSITE, , 
+C_HeavyCruiser_Rahtar.entity, VeryHeavy, ANTIHEAVY, , 
+C_Hero_Dukat.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Hero_Kentar.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Hero_Madred.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Hero_thotgor.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Hero_weyoun.entity, CapitalShip, ANTIVERYHEAVY, , 
+C_Homeworld_Misc_SBcons.entity, Heavy, , , 
+C_Homeworld_Starbase_Nor.entity, Module, ANTIMEDIUM, ANTIVERYHEAVY, 
+C_Isolytic_Weapon.entity, Light, , , 
+C_LongRange_Vasad.entity, Light, ANTIVERYHEAVY, , 
+C_Metreon_Weapon.entity, Light, , , 
+C_Misc_Constructionship.entity, Light, , , 
+C_Misc_SBcons.entity, Heavy, , , 
+C_Scout_Hideki.entity, VeryLight, ANTILIGHT, , 
+C_SiegeTurret.entity, VeryHeavy, , , 
+C_Siege_BreenScout.entity, Medium, ANTIMEDIUM, , 
+C_Siege_Korinas.entity, Light, ANTIVERYHEAVY, , 
+C_Siege_Moset.entity, Medium, ANTILIGHT, , 
 C_Starbase_Eaves.entity, Module, ANTIHEAVY, ANTILIGHT, ANTIVERYHEAVY
 C_Starbase_Monac.entity, Module, ANTIVERYLIGHT, ANTIVERYHEAVY, ANTIMEDIUM
-C_Starbase_Nor.entity, VeryHeavy, ANTILIGHT, ANTIHEAVY
-C_Station_Cap_Drydock.entity, VeryHeavy
-C_Station_Cardfrig.entity, VeryHeavy
-C_Station_CivRes.entity, Light
-C_Station_CombatRes.entity, Light
-C_station_culture.entity, Light
-C_Station_DilithiumMine.entity, Heavy
-C_Station_Domfrig.entity, VeryHeavy
-C_Station_FleetCommand.entity, Module
-C_Station_Frigyard.entity, VeryHeavy
-C_Station_MissileProduction.entity, VeryHeavy
-C_Station_OrbitalCommand.entity, VeryHeavy
-C_Station_Repairyard.entity, Medium
-C_Station_TitanYard.entity, VeryHeavy
-C_station_traderefinery.entity, Heavy
-C_Station_TritaniumMine.entity, Heavy
-C_Station_Turret.entity, VeryHeavy, COMPOSITE, ANTIVERYHEAVY
-C_Support_Archon.entity, VeryHeavy, ANTIHEAVY
-C_Support_BreenCruiser.entity, Heavy, ANTIVERYLIGHT, ANTILIGHT
-C_Support_Manticore.entity, VeryHeavy, ANTIHEAVY
-C_Support_Norin.entity, Medium, ANTILIGHT
-C_Support_Tonga.entity, Light, ANTIVERYLIGHT, ANTILIGHT
-C_Titan_DomDread.entity, Titan, ANTIVERYHEAVY
-C_Titan_Hutet.entity, Titan, ANTIVERYHEAVY
-DreadMissile_Placeholder.entity, Medium
-D_Fighter_Hornet.entity, VeryLight, ANTIVERYLIGHT
-D_Fighter_Hornet_elite.entity, VeryLight, ANTIVERYLIGHT
-D_Fighter_Widow.entity, VeryLight, ANTIMODULE
-D_Fighter_Widow_elite.entity, VeryLight, ANTIMODULE
-Fer_Cruiser_Dkora.entity, Pirate, COMPOSITE
-Fer_Destroyer_Tokorn.entity, Pirate, COMPOSITE
-Fer_Freighter_Dkora.entity, Pirate
-Fer_Station_Tradeport.entity, Module
-FrigateCombatTurret.entity, Light, ANTIMEDIUM
-FrigateTechHeavy.entity, Heavy, ANTIHEAVY
-FrigateTechLight.entity, Light, ANTIMEDIUM
-FrigateTechModuleConstructor.entity, Light
-FrigateTechScout.entity, Light, ANTILIGHT
-FrigateTechSiege.entity, Medium, ANTIMEDIUM
-FrigateTechStarBaseConstructor.entity, Heavy
-F_Cap_Ambassador.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Galaxy.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Galaxy_Engineering.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Galaxy_Saucer.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Nebula.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Phoenix.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Prometheus.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Prometheus_A.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Prometheus_B.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Prometheus_C.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Sovereign.entity, CapitalShip, ANTIVERYHEAVY
-F_Cap_Typhon.entity, CapitalShip, ANTIVERYHEAVY
-F_Carrier_Curry.entity, Medium, ANTIMEDIUM
-F_Colony.entity, Light
-F_Corvette_Defiant.entity, VeryLight, ANTIHEAVY, ANTIVERYHEAVY
-F_Corvette_Miranda.entity, Light, ANTIVERYLIGHT
-F_Cruiser_Akira.entity, VeryHeavy, ANTIHEAVY
-F_Cruiser_Constitution.entity, Heavy, ANTIHEAVY
-F_Cruiser_Excelsior.entity, Heavy, ANTIMEDIUM
-F_Cruiser_Hutzel.entity, Heavy, ANTIHEAVY
-F_Cruiser_Neworleans.entity, Heavy, ANTIMODULE, ANTIHEAVY
-F_Destroyer_Challenger.entity, Light, ANTIVERYLIGHT
-F_Destroyer_Cheyenne.entity, Medium, ANTIMEDIUM
-F_Destroyer_Melbourne.entity, Heavy, ANTIMEDIUM
-F_Destroyer_Niagara.entity, Heavy, ANTIVERYHEAVY
-F_Destroyer_Springfield.entity, Heavy, ANTIVERYHEAVY
-F_Envoy_Challenger.entity, Light, ANTIMEDIUM
-F_Fighter_Danube.entity, VeryLight, ANTIMODULE
-F_Fighter_DeltaFlyer.entity, VeryLight, ANTIVERYLIGHT
-F_Fighter_Peregrine.entity, VeryLight, ANTIVERYLIGHT
-F_Fighter_ValMK1.entity, VeryLight, ANTIVERYLIGHT
-F_Fighter_ValMK1_elite.entity, VeryLight, ANTIVERYLIGHT
-F_Fighter_ValMK2.entity, VeryLight, ANTIMODULE
-F_Fighter_ValMK2_elite.entity, VeryLight, ANTIMODULE
-F_Flak_Centaur.entity, Medium, ANTIVERYLIGHT
-F_Freighter_Cargo.entity, Light
-F_Freighter_Tradeship.entity, Light
-F_Frigate_Constant.entity, VeryLight, ANTIMEDIUM
-F_Frigate_DeltaFlyer.entity, VeryLight, ANTIVERYLIGHT
-F_Frigate_Freedom.entity, Light, ANTIMEDIUM
-F_Frigate_Oberth.entity, Light, ANTILIGHT
-F_Frigate_Saber.entity, VeryLight, ANTIMEDIUM
-F_Hero_Defiant.entity, CapitalShip, ANTIVERYHEAVY
-F_Hero_Enterprise.entity, CapitalShip, ANTIVERYHEAVY
-F_Hero_Voyager.entity, CapitalShip, ANTIVERYHEAVY
-F_Homeworld_Antares.entity, Heavy
+C_Starbase_Nor.entity, VeryHeavy, ANTILIGHT, ANTIHEAVY, 
+C_Station_Cap_Drydock.entity, VeryHeavy, , , 
+C_Station_Cardfrig.entity, VeryHeavy, , , 
+C_Station_CivRes.entity, Light, , , 
+C_Station_CombatRes.entity, Light, , , 
+C_station_culture.entity, Light, , , 
+C_Station_DilithiumMine.entity, Heavy, , , 
+C_Station_Domfrig.entity, VeryHeavy, , , 
+C_Station_FleetCommand.entity, Module, , , 
+C_Station_Frigyard.entity, VeryHeavy, , , 
+C_Station_MissileProduction.entity, VeryHeavy, , , 
+C_Station_OrbitalCommand.entity, VeryHeavy, , , 
+C_Station_Repairyard.entity, Medium, , , 
+C_Station_TitanYard.entity, VeryHeavy, , , 
+C_station_traderefinery.entity, Heavy, , , 
+C_Station_TritaniumMine.entity, Heavy, , , 
+C_Station_Turret.entity, VeryHeavy, COMPOSITE, ANTIVERYHEAVY, 
+C_Support_Archon.entity, VeryHeavy, ANTIHEAVY, , 
+C_Support_BreenCruiser.entity, Heavy, ANTIVERYLIGHT, ANTILIGHT, 
+C_Support_Manticore.entity, VeryHeavy, ANTIHEAVY, , 
+C_Support_Norin.entity, Medium, ANTILIGHT, , 
+C_Support_Tonga.entity, Light, ANTIVERYLIGHT, ANTILIGHT, 
+C_Titan_DomDread.entity, Titan, ANTIVERYHEAVY, , 
+C_Titan_Hutet.entity, Titan, ANTIVERYHEAVY, , 
+DreadMissile_Placeholder.entity, Medium, , , 
+D_Fighter_Hornet.entity, VeryLight, ANTIVERYLIGHT, , 
+D_Fighter_Hornet_elite.entity, VeryLight, ANTIVERYLIGHT, , 
+D_Fighter_Widow.entity, VeryLight, ANTIMODULE, , 
+D_Fighter_Widow_elite.entity, VeryLight, ANTIMODULE, , 
+Fer_Cruiser_Dkora.entity, Pirate, COMPOSITE, , 
+Fer_Destroyer_Tokorn.entity, Pirate, COMPOSITE, , 
+Fer_Freighter_Dkora.entity, Pirate, , , 
+Fer_Station_Tradeport.entity, Module, , , 
+FrigateCombatTurret.entity, Light, ANTIMEDIUM, , 
+FrigateTechHeavy.entity, Heavy, ANTIHEAVY, , 
+FrigateTechLight.entity, Light, ANTIMEDIUM, , 
+FrigateTechModuleConstructor.entity, Light, , , 
+FrigateTechScout.entity, Light, ANTILIGHT, , 
+FrigateTechSiege.entity, Medium, ANTIMEDIUM, , 
+FrigateTechStarBaseConstructor.entity, Heavy, , , 
+F_Cap_Ambassador.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Galaxy.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Galaxy_Engineering.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Galaxy_Saucer.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Nebula.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Phoenix.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Prometheus.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Prometheus_A.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Prometheus_B.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Prometheus_C.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Sovereign.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Cap_Typhon.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Carrier_Curry.entity, Medium, ANTIMEDIUM, , 
+F_Colony.entity, Light, , , 
+F_Corvette_Defiant.entity, VeryLight, ANTIHEAVY, ANTIVERYHEAVY, 
+F_Corvette_Miranda.entity, Light, ANTIVERYLIGHT, , 
+F_Cruiser_Akira.entity, VeryHeavy, ANTIHEAVY, , 
+F_Cruiser_Constitution.entity, Heavy, ANTIHEAVY, , 
+F_Cruiser_Excelsior.entity, Heavy, ANTIMEDIUM, , 
+F_Cruiser_Hutzel.entity, Heavy, ANTIHEAVY, , 
+F_Cruiser_Neworleans.entity, Heavy, ANTIMODULE, ANTIHEAVY, 
+F_Destroyer_Challenger.entity, Light, ANTIVERYLIGHT, , 
+F_Destroyer_Cheyenne.entity, Medium, ANTIMEDIUM, , 
+F_Destroyer_Melbourne.entity, Heavy, ANTIMEDIUM, , 
+F_Destroyer_Niagara.entity, Heavy, ANTIVERYHEAVY, , 
+F_Destroyer_Springfield.entity, Heavy, ANTIVERYHEAVY, , 
+F_Envoy_Challenger.entity, Light, ANTIMEDIUM, , 
+F_Fighter_Danube.entity, VeryLight, ANTIMODULE, , 
+F_Fighter_DeltaFlyer.entity, VeryLight, ANTIVERYLIGHT, , 
+F_Fighter_Peregrine.entity, VeryLight, ANTIVERYLIGHT, , 
+F_Fighter_ValMK1.entity, VeryLight, ANTIVERYLIGHT, , 
+F_Fighter_ValMK1_elite.entity, VeryLight, ANTIVERYLIGHT, , 
+F_Fighter_ValMK2.entity, VeryLight, ANTIMODULE, , 
+F_Fighter_ValMK2_elite.entity, VeryLight, ANTIMODULE, , 
+F_Flak_Centaur.entity, Medium, ANTIVERYLIGHT, , 
+F_Freighter_Cargo.entity, Light, , , 
+F_Freighter_Tradeship.entity, Light, , , 
+F_Frigate_Constant.entity, VeryLight, ANTIMEDIUM, , 
+F_Frigate_DeltaFlyer.entity, VeryLight, ANTIVERYLIGHT, , 
+F_Frigate_Freedom.entity, Light, ANTIMEDIUM, , 
+F_Frigate_Oberth.entity, Light, ANTILIGHT, , 
+F_Frigate_Saber.entity, VeryLight, ANTIMEDIUM, , 
+F_Hero_Defiant.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Hero_Enterprise.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Hero_Voyager.entity, CapitalShip, ANTIVERYHEAVY, , 
+F_Homeworld_Antares.entity, Heavy, , , 
 F_Homeworld_Starbase_Spacedock.entity, Module, ANTILIGHT, ANTIHEAVY, ANTIVERYHEAVY
-F_LongRange_Steamrunner.entity, Light, ANTIVERYHEAVY
-F_Misc_Antares.entity, Heavy
-F_Misc_Constructionship.entity, Light
-F_Scout_Nova.entity, VeryLight, ANTILIGHT
-F_Siege_Norway.entity, Medium, ANTILIGHT
+F_LongRange_Steamrunner.entity, Light, ANTIVERYHEAVY, , 
+F_Misc_Antares.entity, Heavy, , , 
+F_Misc_Constructionship.entity, Light, , , 
+F_Scout_Nova.entity, VeryLight, ANTILIGHT, , 
+F_Siege_Norway.entity, Medium, ANTILIGHT, , 
 F_Starbase_Outpost.entity, VeryHeavy, ANTILIGHT, ANTIMEDIUM, ANTIVERYHEAVY
 F_Starbase_Spacedock.entity, Module, ANTIMEDIUM, ANTILIGHT, ANTIVERYHEAVY
-F_Starbase_UnityOne.entity, Module, COMPOSITE
-F_Station_Cap_Drydock.entity, VeryHeavy
-F_Station_Commarray.entity, Light
-F_Station_DilithiumMine.entity, Heavy
-F_Station_Drydock.entity, VeryHeavy
-F_Station_FleetCommand.entity, Module
-F_Station_HangarDefense.entity, VeryHeavy
-F_Station_Jupiter.entity, Light
-F_Station_MiningStation.entity, Heavy
-F_Station_Phaserturret.entity, Light, ANTIMEDIUM
-F_Station_Repairyard.entity, Medium
-F_Station_ResearchOutpost.entity, Light
-F_Station_TitanYard.entity, VeryHeavy
-F_Station_Torpturret.entity, VeryHeavy, ANTIVERYHEAVY
-F_Station_Tradingstation.entity, Heavy
-F_Station_TritaniumMine.entity, Heavy
-F_Station_Utopia.entity, Light
-F_Support_Constellation.entity, Medium, ANTILIGHT
-F_Support_Intrepid.entity, Medium, ANTILIGHT
-F_Titan_Excalibur.entity, Titan, ANTIVERYHEAVY
-F_Titan_Polaris.entity, Titan, ANTIVERYHEAVY
-G_Cap_Cube.entity, CapitalShip, COMPOSITE
-G_Colony.entity, Light
-G_Cruiser_Sphere.entity, VeryHeavy, ANTIHEAVY
-G_Flak_Dodec.entity, Heavy, ANTIVERYLIGHT
-G_Siege_Obelisk.entity, Heavy, ANTIHEAVY
-K_Cap_Carrier.entity, CapitalShip, ANTIVERYHEAVY
-K_Cap_Feklhr.entity, CapitalShip, ANTIVERYHEAVY
-K_Cap_Neghvar.entity, CapitalShip, ANTIVERYHEAVY
-K_Cap_Qehrall.entity, CapitalShip, ANTIVERYHEAVY
-K_Cap_Ravenous.entity, CapitalShip, ANTIVERYHEAVY
-K_Cap_Vorcha.entity, CapitalShip, ANTIVERYHEAVY
-K_Carrier_D3.entity, Light, ANTIVERYLIGHT, ANTIMEDIUM
-K_Colony.entity, Light, ANTIMEDIUM
-K_Corvette_Raptor.entity, Light, ANTILIGHT
-K_Cruiser_Deathrite.entity, Heavy, ANTILIGHT, ANTIMEDIUM
-K_Cruiser_Kvek.entity, VeryHeavy, ANTIHEAVY
-K_Cruiser_Kvort.entity, Light, ANTIHEAVY, ANTIVERYHEAVY
-K_Cruiser_KvortTemp.entity, Light, ANTIHEAVY, ANTIVERYHEAVY
-K_Cruiser_Stalker.entity, Heavy, ANTIMODULE
-K_Envoy_Qonos.entity, Light, ANTIMEDIUM
-K_Fighter_Bomber.entity, VeryLight, ANTIMODULE
-K_Fighter_Bomber_elite.entity, VeryLight, ANTIMODULE
-K_Fighter_Dagger.entity, VeryLight, ANTIVERYLIGHT
-K_Fighter_Dagger_elite.entity, VeryLight, ANTIVERYLIGHT
-K_Flak_K32.entity, Medium, ANTIVERYLIGHT
-K_Freighter_Cargo.entity, Light
-K_Freighter_Trade.entity, Light
-K_Frigate_Brell.entity, VeryLight, ANTIMEDIUM
-K_Frigate_BrellTemp.entity, VeryLight, ANTIMEDIUM
-K_Hero_Gowron.entity, CapitalShip, ANTIVERYHEAVY
-K_Hero_Kurn.entity, CapitalShip, ANTIVERYHEAVY
-K_Hero_Martok.entity, CapitalShip, ANTIVERYHEAVY
-K_Homeworld_StarbaseConst.entity, Heavy
+F_Starbase_UnityOne.entity, Module, COMPOSITE, , 
+F_Station_Cap_Drydock.entity, VeryHeavy, , , 
+F_Station_Commarray.entity, Light, , , 
+F_Station_DilithiumMine.entity, Heavy, , , 
+F_Station_Drydock.entity, VeryHeavy, , , 
+F_Station_FleetCommand.entity, Module, , , 
+F_Station_HangarDefense.entity, VeryHeavy, , , 
+F_Station_Jupiter.entity, Light, , , 
+F_Station_MiningStation.entity, Heavy, , , 
+F_Station_Phaserturret.entity, Light, ANTIMEDIUM, , 
+F_Station_Repairyard.entity, Medium, , , 
+F_Station_ResearchOutpost.entity, Light, , , 
+F_Station_TitanYard.entity, VeryHeavy, , , 
+F_Station_Torpturret.entity, VeryHeavy, ANTIVERYHEAVY, , 
+F_Station_Tradingstation.entity, Heavy, , , 
+F_Station_TritaniumMine.entity, Heavy, , , 
+F_Station_Utopia.entity, Light, , , 
+F_Support_Constellation.entity, Medium, ANTILIGHT, , 
+F_Support_Intrepid.entity, Medium, ANTILIGHT, , 
+F_Titan_Excalibur.entity, Titan, ANTIVERYHEAVY, , 
+F_Titan_Polaris.entity, Titan, ANTIVERYHEAVY, , 
+G_Cap_Cube.entity, CapitalShip, COMPOSITE, , 
+G_Colony.entity, Light, , , 
+G_Cruiser_Sphere.entity, VeryHeavy, ANTIHEAVY, , 
+G_Flak_Dodec.entity, Heavy, ANTIVERYLIGHT, , 
+G_Siege_Obelisk.entity, Heavy, ANTIHEAVY, , 
+K_Cap_Carrier.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Cap_Feklhr.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Cap_Neghvar.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Cap_Qehrall.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Cap_Ravenous.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Cap_Vorcha.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Carrier_D3.entity, Light, ANTIVERYLIGHT, ANTIMEDIUM, 
+K_Colony.entity, Light, ANTIMEDIUM, , 
+K_Corvette_Raptor.entity, Light, ANTILIGHT, , 
+K_Cruiser_Deathrite.entity, Heavy, ANTILIGHT, ANTIMEDIUM, 
+K_Cruiser_Kvek.entity, VeryHeavy, ANTIHEAVY, , 
+K_Cruiser_Kvort.entity, Light, ANTIHEAVY, ANTIVERYHEAVY, 
+K_Cruiser_KvortTemp.entity, Light, ANTIHEAVY, ANTIVERYHEAVY, 
+K_Cruiser_Stalker.entity, Heavy, ANTIMODULE, , 
+K_Envoy_Qonos.entity, Light, ANTIMEDIUM, , 
+K_Fighter_Bomber.entity, VeryLight, ANTIMODULE, , 
+K_Fighter_Bomber_elite.entity, VeryLight, ANTIMODULE, , 
+K_Fighter_Dagger.entity, VeryLight, ANTIVERYLIGHT, , 
+K_Fighter_Dagger_elite.entity, VeryLight, ANTIVERYLIGHT, , 
+K_Flak_K32.entity, Medium, ANTIVERYLIGHT, , 
+K_Freighter_Cargo.entity, Light, , , 
+K_Freighter_Trade.entity, Light, , , 
+K_Frigate_Brell.entity, VeryLight, ANTIMEDIUM, , 
+K_Frigate_BrellTemp.entity, VeryLight, ANTIMEDIUM, , 
+K_Hero_Gowron.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Hero_Kurn.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Hero_Martok.entity, CapitalShip, ANTIVERYHEAVY, , 
+K_Homeworld_StarbaseConst.entity, Heavy, , , 
 K_Homeworld_Starbase_Spacedock.entity, Module, ANTIMEDIUM, ANTIVERYHEAVY, ANTILIGHT
-K_Longrange_Kvort.entity, Light, ANTIVERYHEAVY
-K_Longrange_KvortTemp.entity, Light, ANTIVERYHEAVY
-K_Misc_Construction.entity, Light
-K_Misc_StarbaseConst.entity, Heavy
-K_Scout_NuQDuJ.entity, VeryLight, ANTILIGHT
-K_Siege_Predator.entity, Medium, ANTILIGHT
-K_Starbase_Outpost.entity, VeryHeavy, ANTIMEDIUM, ANTIVERYHEAVY
+K_Longrange_Kvort.entity, Light, ANTIVERYHEAVY, , 
+K_Longrange_KvortTemp.entity, Light, ANTIVERYHEAVY, , 
+K_Misc_Construction.entity, Light, , , 
+K_Misc_StarbaseConst.entity, Heavy, , , 
+K_Scout_NuQDuJ.entity, VeryLight, ANTILIGHT, , 
+K_Siege_Predator.entity, Medium, ANTILIGHT, , 
+K_Starbase_Outpost.entity, VeryHeavy, ANTIMEDIUM, ANTIVERYHEAVY, 
 K_Starbase_Spacedock.entity, Module, ANTIMEDIUM, ANTIVERYHEAVY, ANTILIGHT
-K_Starbase_UnityOne.entity, Module, COMPOSITE
-K_Station_Capitalyard.entity, VeryHeavy
-K_Station_CivilLab.entity, Light
-K_Station_Combatlab.entity, Light
-K_Station_Commarray.entity, Light
-K_Station_DilithiumMine.entity, Heavy
-K_Station_FrigateYard.entity, VeryHeavy
-K_Station_Herospawner.entity, Module
-K_Station_OrbitalCommand.entity, VeryHeavy
-K_Station_Refinery.entity, Heavy
-K_Station_Repairyard.entity, Medium
-K_Station_Shockwaveyard.entity, VeryHeavy
-K_Station_Spacemine_Field.entity, Light
-K_Station_Tradeport.entity, Heavy
-K_Station_TritaniumMine.entity, Heavy
+K_Starbase_UnityOne.entity, Module, COMPOSITE, , 
+K_Station_Capitalyard.entity, VeryHeavy, , , 
+K_Station_CivilLab.entity, Light, , , 
+K_Station_Combatlab.entity, Light, , , 
+K_Station_Commarray.entity, Light, , , 
+K_Station_DilithiumMine.entity, Heavy, , , 
+K_Station_FrigateYard.entity, VeryHeavy, , , 
+K_Station_Herospawner.entity, Module, , , 
+K_Station_OrbitalCommand.entity, VeryHeavy, , , 
+K_Station_Refinery.entity, Heavy, , , 
+K_Station_Repairyard.entity, Medium, , , 
+K_Station_Shockwaveyard.entity, VeryHeavy, , , 
+K_Station_Spacemine_Field.entity, Light, , , 
+K_Station_Tradeport.entity, Heavy, , , 
+K_Station_TritaniumMine.entity, Heavy, , , 
 K_Station_Turret.entity, VeryHeavy, ANTILIGHT, ANTIMEDIUM, ANTIVERYHEAVY
-K_Support_D12.entity, Heavy, ANTIMEDIUM
-K_Support_Ktinga.entity, Medium, ANTIMEDIUM, ANTIHEAVY
-K_Titan_Shockwave.entity, Titan, ANTIVERYHEAVY
-K_Titan_SwordofKahless.entity, Titan, ANTIVERYHEAVY
-MF_Cap_OOKeldon.entity, Pirate, COMPOSITE
-MF_Cap_S31Phoenix.entity, CapitalShip, ANTIVERYHEAVY
-MF_Cap_TSShadow.entity, Pirate, COMPOSITE
-MF_Corvette_S31Defiant.entity, Pirate, COMPOSITE
-MF_Cruiser_S31Akira.entity, Pirate, COMPOSITE
-MF_Cruiser_S31Excelsior.entity, Pirate, COMPOSITE
-MF_Embassy_Federation.entity, Module
-MF_Embassy_Klingon.entity, Module
-MF_Embassy_Romulan.entity, Module
-MF_Embassy_Union.entity, Module
-MF_MUAkira.entity, Pirate, COMPOSITE
-MF_MUCap_Prometheus_A.entity, CapitalShip, ANTIVERYHEAVY
-MF_MUCap_Prometheus_B.entity, CapitalShip, ANTIVERYHEAVY
-MF_MUCap_Prometheus_C.entity, CapitalShip, ANTIVERYHEAVY
-MF_MUNorway.entity, Pirate, COMPOSITE
-MF_MUPrometheus.entity, Pirate, COMPOSITE
-MF_MUSaber.entity, Pirate, COMPOSITE
-MF_OOConstructionship.entity, Light
-MF_OOGalor.entity, Pirate, COMPOSITE
-MF_OORasilak.entity, Pirate, COMPOSITE
-MF_Support_S31Intrepid.entity, Pirate, COMPOSITE
-M_BorgCooperative_Cap_Cube.entity, CapitalShip, COMPOSITE
-M_Cap_Dreadnought.entity, CapitalShip
-M_Cap_Dreadnought_C.entity, CapitalShip
-M_Cap_EchoPapa_C.entity, CapitalShip, COMPOSITE
-M_Cap_Husnock_C.entity, CapitalShip, COMPOSITE
-M_Cap_Husnock_Warship.entity, CapitalShip, COMPOSITE
-M_Cap_IssImperator_C.entity, CapitalShip, COMPOSITE
-M_Cap_MirrorKulinor.entity, CapitalShip, COMPOSITE
+K_Support_D12.entity, Heavy, ANTIMEDIUM, , 
+K_Support_Ktinga.entity, Medium, ANTIMEDIUM, ANTIHEAVY, 
+K_Titan_Shockwave.entity, Titan, ANTIVERYHEAVY, , 
+K_Titan_SwordofKahless.entity, Titan, ANTIVERYHEAVY, , 
+MF_Cap_OOKeldon.entity, Pirate, COMPOSITE, , 
+MF_Cap_S31Phoenix.entity, CapitalShip, ANTIVERYHEAVY, , 
+MF_Cap_TSShadow.entity, Pirate, COMPOSITE, , 
+MF_Corvette_S31Defiant.entity, Pirate, COMPOSITE, , 
+MF_Cruiser_S31Akira.entity, Pirate, COMPOSITE, , 
+MF_Cruiser_S31Excelsior.entity, Pirate, COMPOSITE, , 
+MF_Embassy_Federation.entity, Module, , , 
+MF_Embassy_Klingon.entity, Module, , , 
+MF_Embassy_Romulan.entity, Module, , , 
+MF_Embassy_Union.entity, Module, , , 
+MF_MUAkira.entity, Pirate, COMPOSITE, , 
+MF_MUCap_Prometheus_A.entity, CapitalShip, ANTIVERYHEAVY, , 
+MF_MUCap_Prometheus_B.entity, CapitalShip, ANTIVERYHEAVY, , 
+MF_MUCap_Prometheus_C.entity, CapitalShip, ANTIVERYHEAVY, , 
+MF_MUNorway.entity, Pirate, COMPOSITE, , 
+MF_MUPrometheus.entity, Pirate, COMPOSITE, , 
+MF_MUSaber.entity, Pirate, COMPOSITE, , 
+MF_OOConstructionship.entity, Light, , , 
+MF_OOGalor.entity, Pirate, COMPOSITE, , 
+MF_OORasilak.entity, Pirate, COMPOSITE, , 
+MF_Support_S31Intrepid.entity, Pirate, COMPOSITE, , 
+M_BorgCooperative_Cap_Cube.entity, CapitalShip, COMPOSITE, , 
+M_Cap_Dreadnought.entity, CapitalShip, , , 
+M_Cap_Dreadnought_C.entity, CapitalShip, , , 
+M_Cap_EchoPapa_C.entity, CapitalShip, COMPOSITE, , 
+M_Cap_Husnock_C.entity, CapitalShip, COMPOSITE, , 
+M_Cap_Husnock_Warship.entity, CapitalShip, COMPOSITE, , 
+M_Cap_IssImperator_C.entity, CapitalShip, COMPOSITE, , 
+M_Cap_MirrorKulinor.entity, CapitalShip, COMPOSITE, , 
 M_Cap_MirrorNeghvar_C.entity, CapitalShip, COMPOSITE, CAPITALSHIP, ANTIMODULE
-M_Cap_Neghvar.entity, CapitalShip, COMPOSITE, ANTIMODULE
-M_Cap_Tamarian.entity, CapitalShip, COMPOSITE
-M_Cap_Tamarian_C.entity, CapitalShip, COMPOSITE
-M_Cap_Theropod_C.entity, Pirate, COMPOSITE
-M_Cap_Warbird.entity, CapitalShip, COMPOSITE
-M_Card_Bioship.entity, Heavy, COMPOSITE
-M_Card_UndamagedBioship.entity, Heavy, COMPOSITE
-M_Convoy_Freighter.entity, Light
-M_Convoy_Oberth.entity, Light
-M_Corvette_ImpulseShip.entity, Pirate, COMPOSITE
-M_Corvette_Raider.entity, Pirate, COMPOSITE
-M_Corvette_Saratoga.entity, Pirate, COMPOSITE
-M_Corvette_Soyuz.entity, Pirate, COMPOSITE
-M_Cruiser_Hirogen_Venatic.entity, Pirate, COMPOSITE
-M_Cruiser_Hirogen_Venatic_Spawn.entity, Pirate, COMPOSITE
-M_Cruiser_Idryll.entity, Pirate, COMPOSITE
-M_Cruiser_KessokHeavy.entity, Pirate, COMPOSITE
-M_Cruiser_KessokLight.entity, Pirate, COMPOSITE
-M_Cruiser_RadiationShip.entity, Heavy, ANTIHEAVY
-M_Cruiser_SFCPirate.entity, Pirate, COMPOSITE
-M_Cruiser_SFCPirate_Spawn.entity, Pirate, COMPOSITE
-M_Cruiser_SonaBattleship.entity, Pirate, COMPOSITE
-M_Cruiser_SonaRuffalo.entity, Pirate, COMPOSITE
-M_Cruiser_TalarianWarship.entity, Pirate, COMPOSITE
-M_Cruiser_Tamarian.entity, Pirate, COMPOSITE
-M_Cruiser_Tholian.entity, Pirate, COMPOSITE
-M_Cruiser_Tholian_Spawn.entity, Pirate, COMPOSITE
-M_Cruiser_Yeager.entity, Pirate, COMPOSITE
-M_Cruiser_Zalkonian.entity, Pirate, COMPOSITE
-M_C_Station_CombatRes.entity, Module
-M_EventObject_Asteroid.entity, Heavy
-M_Event_Bioship.entity, Pirate, COMPOSITE
-M_Event_Crystal.entity, Pirate, COMPOSITE
-M_Event_Cube.entity, Pirate, COMPOSITE
-M_Event_Doomsday.entity, Pirate, COMPOSITE
-M_Event_Tarellian.entity, Pirate
-M_Event_Whaleprobe.entity, Pirate
-M_Fighter_Danube.entity, Pirate, COMPOSITE
-M_Fighter_Peregrine.entity, Pirate, COMPOSITE
-M_Flak_Mondor.entity, Pirate, COMPOSITE
-M_Freighter_Antares.entity, Pirate
-M_Frigate_BajoranBattleship.entity, Pirate, COMPOSITE
-M_Frigate_BajoranCruiser.entity, Pirate, COMPOSITE
-M_Frigate_BajoranDestroyer.entity, Pirate, COMPOSITE
-M_Frigate_BajorType1.entity, Pirate, COMPOSITE
-M_Frigate_EchoPapa_stage1.entity, CapitalShip, COMPOSITE
-M_Frigate_EchoPapa_stage2.entity, CapitalShip, COMPOSITE
-M_Frigate_EchoPapa_stage3.entity, CapitalShip, COMPOSITE
-M_Frigate_EchoPapa_stage4.entity, CapitalShip, COMPOSITE
-M_Frigate_EchoPapa_stage4_1.entity, CapitalShip, COMPOSITE
-M_Frigate_HirogenHunter.entity, Pirate, COMPOSITE
-M_Frigate_HirogenHunter_Spawn.entity, Pirate, COMPOSITE
-M_Frigate_Krabby.entity, Pirate, COMPOSITE
-M_Frigate_Observ.entity, Pirate, COMPOSITE
-M_Frigate_SFCPirate.entity, Pirate, COMPOSITE
-M_Frigate_SFCPirate_Spawn.entity, Pirate, COMPOSITE
-M_Frigate_Tholian.entity, Pirate, COMPOSITE
-M_Frigate_Tholian_Spawn.entity, Pirate, COMPOSITE
-M_Gomtuu.entity, Pirate
-M_K_Station_CivilLab.entity, Module
-M_Merchant.entity, Pirate, COMPOSITE
-M_Misc_AcetonAsteroid.entity, Medium
-M_Neutral_C_MiningStation.entity, Module
-M_Neutral_C_Shipyard.entity, Module
-M_Neutral_C_TradeStation.entity, Module
-M_Neutral_F_MiningStation.entity, Module
-M_Neutral_F_Shipyard.entity, Module
-M_Neutral_F_TradeStation.entity, Module
-M_Neutral_Hirogen_Commstation.entity, Module
-M_Neutral_Hirogen_holostation.entity, Module
-M_Neutral_I_MiningStation.entity, Module
-M_Neutral_I_Shipyard.entity, Module
-M_Neutral_I_TradeStation.entity, Module
-M_Neutral_K_MiningStation.entity, Module
-M_Neutral_K_Shipyard.entity, Module
-M_Neutral_K_TradeStation.entity, Module
-M_Neutral_R_MiningStation.entity, Module
-M_Neutral_R_Shipyard.entity, Module
-M_Neutral_R_TradeStation.entity, Module
-M_Neutral_TradeStation.entity, Module
-M_R_Station_Civ_Res.entity, Module
-M_Sheliak.entity, Pirate, COMPOSITE
-M_Siege_BreenScout.entity, Pirate, COMPOSITE
-M_Siege_Warship.entity, Pirate, COMPOSITE
-M_Station_ArgusArray.entity, Module
-M_Station_MirandaYard.entity, Module
-M_Support_BreenCruiser.entity, Pirate, COMPOSITE
-M_Support_Scimitar.entity, Titan, COMPOSITE
-Nem_Cruiser_AttackDrone.entity, Pirate, COMPOSITE
-NEM_Frigate_BrellDrone.entity, Pirate, COMPOSITE
-NEM_Frigate_BrellDrone2.entity, Pirate, COMPOSITE
-NEM_Frigate_Conduit.entity, Medium
-NEM_Frigate_ConduitStar.entity, Medium
-NEM_Frigate_ConduitStart.entity, Medium
-NEM_NemStation_DroneSpawner.entity, Module
-NEM_NemStation_EspionageStation.entity, Module
+M_Cap_Neghvar.entity, CapitalShip, COMPOSITE, ANTIMODULE, 
+M_Cap_Tamarian.entity, CapitalShip, COMPOSITE, , 
+M_Cap_Tamarian_C.entity, CapitalShip, COMPOSITE, , 
+M_Cap_Theropod_C.entity, Pirate, COMPOSITE, , 
+M_Cap_Warbird.entity, CapitalShip, COMPOSITE, , 
+M_Card_Bioship.entity, Heavy, COMPOSITE, , 
+M_Card_UndamagedBioship.entity, Heavy, COMPOSITE, , 
+M_Convoy_Freighter.entity, Light, , , 
+M_Convoy_Oberth.entity, Light, , , 
+M_Corvette_ImpulseShip.entity, Pirate, COMPOSITE, , 
+M_Corvette_Raider.entity, Pirate, COMPOSITE, , 
+M_Corvette_Saratoga.entity, Pirate, COMPOSITE, , 
+M_Corvette_Soyuz.entity, Pirate, COMPOSITE, , 
+M_Cruiser_Hirogen_Venatic.entity, Pirate, COMPOSITE, , 
+M_Cruiser_Hirogen_Venatic_Spawn.entity, Pirate, COMPOSITE, , 
+M_Cruiser_Idryll.entity, Pirate, COMPOSITE, , 
+M_Cruiser_KessokHeavy.entity, Pirate, COMPOSITE, , 
+M_Cruiser_KessokLight.entity, Pirate, COMPOSITE, , 
+M_Cruiser_RadiationShip.entity, Heavy, ANTIHEAVY, , 
+M_Cruiser_SFCPirate.entity, Pirate, COMPOSITE, , 
+M_Cruiser_SFCPirate_Spawn.entity, Pirate, COMPOSITE, , 
+M_Cruiser_SonaBattleship.entity, Pirate, COMPOSITE, , 
+M_Cruiser_SonaRuffalo.entity, Pirate, COMPOSITE, , 
+M_Cruiser_TalarianWarship.entity, Pirate, COMPOSITE, , 
+M_Cruiser_Tamarian.entity, Pirate, COMPOSITE, , 
+M_Cruiser_Tholian.entity, Pirate, COMPOSITE, , 
+M_Cruiser_Tholian_Spawn.entity, Pirate, COMPOSITE, , 
+M_Cruiser_Yeager.entity, Pirate, COMPOSITE, , 
+M_Cruiser_Zalkonian.entity, Pirate, COMPOSITE, , 
+M_C_Station_CombatRes.entity, Module, , , 
+M_EventObject_Asteroid.entity, Heavy, , , 
+M_Event_Bioship.entity, Pirate, COMPOSITE, , 
+M_Event_Crystal.entity, Pirate, COMPOSITE, , 
+M_Event_Cube.entity, Pirate, COMPOSITE, , 
+M_Event_Doomsday.entity, Pirate, COMPOSITE, , 
+M_Event_Tarellian.entity, Pirate, , , 
+M_Event_Whaleprobe.entity, Pirate, , , 
+M_Fighter_Danube.entity, Pirate, COMPOSITE, , 
+M_Fighter_Peregrine.entity, Pirate, COMPOSITE, , 
+M_Flak_Mondor.entity, Pirate, COMPOSITE, , 
+M_Freighter_Antares.entity, Pirate, , , 
+M_Frigate_BajoranBattleship.entity, Pirate, COMPOSITE, , 
+M_Frigate_BajoranCruiser.entity, Pirate, COMPOSITE, , 
+M_Frigate_BajoranDestroyer.entity, Pirate, COMPOSITE, , 
+M_Frigate_BajorType1.entity, Pirate, COMPOSITE, , 
+M_Frigate_EchoPapa_stage1.entity, CapitalShip, COMPOSITE, , 
+M_Frigate_EchoPapa_stage2.entity, CapitalShip, COMPOSITE, , 
+M_Frigate_EchoPapa_stage3.entity, CapitalShip, COMPOSITE, , 
+M_Frigate_EchoPapa_stage4.entity, CapitalShip, COMPOSITE, , 
+M_Frigate_EchoPapa_stage4_1.entity, CapitalShip, COMPOSITE, , 
+M_Frigate_HirogenHunter.entity, Pirate, COMPOSITE, , 
+M_Frigate_HirogenHunter_Spawn.entity, Pirate, COMPOSITE, , 
+M_Frigate_Krabby.entity, Pirate, COMPOSITE, , 
+M_Frigate_Observ.entity, Pirate, COMPOSITE, , 
+M_Frigate_SFCPirate.entity, Pirate, COMPOSITE, , 
+M_Frigate_SFCPirate_Spawn.entity, Pirate, COMPOSITE, , 
+M_Frigate_Tholian.entity, Pirate, COMPOSITE, , 
+M_Frigate_Tholian_Spawn.entity, Pirate, COMPOSITE, , 
+M_Gomtuu.entity, Pirate, , , 
+M_K_Station_CivilLab.entity, Module, , , 
+M_Merchant.entity, Pirate, COMPOSITE, , 
+M_Misc_AcetonAsteroid.entity, Medium, , , 
+M_Neutral_C_MiningStation.entity, Module, , , 
+M_Neutral_C_Shipyard.entity, Module, , , 
+M_Neutral_C_TradeStation.entity, Module, , , 
+M_Neutral_F_MiningStation.entity, Module, , , 
+M_Neutral_F_Shipyard.entity, Module, , , 
+M_Neutral_F_TradeStation.entity, Module, , , 
+M_Neutral_Hirogen_Commstation.entity, Module, , , 
+M_Neutral_Hirogen_holostation.entity, Module, , , 
+M_Neutral_I_MiningStation.entity, Module, , , 
+M_Neutral_I_Shipyard.entity, Module, , , 
+M_Neutral_I_TradeStation.entity, Module, , , 
+M_Neutral_K_MiningStation.entity, Module, , , 
+M_Neutral_K_Shipyard.entity, Module, , , 
+M_Neutral_K_TradeStation.entity, Module, , , 
+M_Neutral_R_MiningStation.entity, Module, , , 
+M_Neutral_R_Shipyard.entity, Module, , , 
+M_Neutral_R_TradeStation.entity, Module, , , 
+M_Neutral_TradeStation.entity, Module, , , 
+M_R_Station_Civ_Res.entity, Module, , , 
+M_Sheliak.entity, Pirate, COMPOSITE, , 
+M_Siege_BreenScout.entity, Pirate, COMPOSITE, , 
+M_Siege_Warship.entity, Pirate, COMPOSITE, , 
+M_Station_ArgusArray.entity, Module, , , 
+M_Station_MirandaYard.entity, Module, , , 
+M_Support_BreenCruiser.entity, Pirate, COMPOSITE, , 
+M_Support_Scimitar.entity, Titan, COMPOSITE, , 
+Nem_Cruiser_AttackDrone.entity, Pirate, COMPOSITE, , 
+NEM_Frigate_BrellDrone.entity, Pirate, COMPOSITE, , 
+NEM_Frigate_BrellDrone2.entity, Pirate, COMPOSITE, , 
+NEM_Frigate_Conduit.entity, Medium, , , 
+NEM_Frigate_ConduitStar.entity, Medium, , , 
+NEM_Frigate_ConduitStart.entity, Medium, , , 
+NEM_NemStation_DroneSpawner.entity, Module, , , 
+NEM_NemStation_EspionageStation.entity, Module, , , 
 NEM_NemStation_HomeBase.entity, Module, ANTIHEAVY, ANTIMEDIUM, CAPITALSHIP
-NEM_SonaBeacon.entity, Module
-OS_B_Corvette_Dart.entity, Light, ANTILIGHT
-OS_B_Cruiser_Pyramid.entity, Heavy, ANTIMEDIUM
-OS_B_Cruiser_Sphere.entity, VeryHeavy, ANTIVERYHEAVY
-OS_B_Frigate_Interceptor.entity, VeryLight, ANTIMEDIUM
-OS_B_Support_Adaptor.entity, Heavy, ANTIMEDIUM
-OS_C_Corvette_Conservator.entity, Light, ANTIVERYLIGHT
-OS_C_Flak_Ocett.entity, Medium, ANTIVERYLIGHT
-OS_C_Frigate_Rasilak.entity, VeryLight, ANTIMEDIUM
-OS_C_Support_Norin.entity, Medium, ANTILIGHT
-OS_C_Support_Tonga.entity, Light, ANTIVERYLIGHT, ANTILIGHT
-OS_F_Corvette_Miranda.entity, Light, ANTIVERYLIGHT
-OS_F_Cruiser_Excelsior.entity, Heavy, ANTIMEDIUM
-OS_F_Destroyer_Challenger.entity, Light, ANTIVERYLIGHT
-OS_F_Destroyer_Cheyenne.entity, Medium, ANTIMEDIUM
-OS_F_Destroyer_Springfield.entity, Heavy, ANTIVERYHEAVY
-OS_K_Corvette_Raptor.entity, Light, ANTILIGHT
-OS_K_Flak_K32.entity, Medium, ANTIVERYLIGHT
-OS_K_Frigate_Brell.entity, VeryLight, ANTIMEDIUM
-OS_K_Longrange_Kvort.entity, Light, ANTIVERYHEAVY
-OS_K_Support_Ktinga.entity, Medium, ANTIMEDIUM, ANTIHEAVY
-OS_R_Corvette_Shrike.entity, Light, ANTIHEAVY
-OS_R_Cruiser_HeavyDefender.entity, VeryHeavy, ANTIMEDIUM
-OS_R_Flak_Lanora.entity, Medium, ANTIVERYLIGHT
-OS_R_Frigate_Hawk.entity, VeryLight, ANTIMEDIUM
-OS_R_Support_Harpy.entity, VeryLight, ANTIHEAVY, ANTIVERYHEAVY
-PLANETMODULE_TECHORBITALCRYSTALEXTRACTOR.entity, Module
-PLANETMODULE_TECHORBITALFRIGATEFACTORY.entity, Module
-PLANETMODULE_TECHORBITALGAUSSDEFENSE.entity, VeryHeavy, COMPOSITE
-PLANETMODULE_TECHORBITALMETALEXTRACTOR.entity, Module
-P_Cap_Theropod.entity, Pirate, COMPOSITE
-P_Cruiser_Varanus.entity, Pirate, COMPOSITE
-P_Flak_Uracentron.entity, Pirate, COMPOSITE
-P_Frigate_Raider.entity, Pirate, COMPOSITE
-P_Siege_Ravager.entity, Pirate, COMPOSITE
-P_Station_HomeBase.entity, Pirate, COMPOSITE
-P_Station_Turret.entity, Pirate, COMPOSITE
-Remnant_ISDII.entity, CapitalShip, CAPITALSHIP
-R_AntiStation_WhiteWing.entity, Heavy, ANTIMODULE
-R_Cap_Battlecruiser.entity, CapitalShip, ANTIMODULE
-R_Cap_HeavyCruiser.entity, CapitalShip, ANTIVERYHEAVY
-R_Cap_Shadow.entity, CapitalShip, ANTIVERYHEAVY
-R_Cap_Tavara.entity, CapitalShip, ANTIVERYHEAVY
-R_Cap_Valdore.entity, CapitalShip, ANTIVERYHEAVY
-R_Cap_Vengeance.entity, CapitalShip, ANTIVERYHEAVY
-R_Cap_Warbird.entity, CapitalShip, ANTIVERYHEAVY
-R_Carrier_Dominus.entity, Medium, ANTILIGHT
-R_Corvette_Shrike.entity, Light, ANTIHEAVY
-R_Cruiser_Falcon.entity, VeryHeavy, ANTIHEAVY
-R_Cruiser_HeavyDefender.entity, VeryHeavy, ANTIMEDIUM
-R_envoy_pollux.entity, Light, ANTIMEDIUM
-R_Fighter_Javelin.entity, VeryLight, ANTIVERYLIGHT
-R_Fighter_Javelin_elite.entity, VeryLight, ANTIVERYLIGHT
-R_Flak_Lanora.entity, Medium, ANTIVERYLIGHT
-R_Freight_Cargo.entity, Light
-R_Freight_Trade.entity, Light
-R_Frigate_Hawk.entity, VeryLight, ANTIMEDIUM
-R_Hero_Donatra.entity, CapitalShip, ANTIVERYHEAVY
-R_Hero_Sela.entity, CapitalShip, ANTIVERYHEAVY
-R_Hero_Tomalok.entity, CapitalShip, ANTIVERYHEAVY
-R_Homeworld_Misc_SBconstructor.entity, Heavy
+NEM_SonaBeacon.entity, Module, , , 
+OS_B_Corvette_Dart.entity, Light, ANTILIGHT, , 
+OS_B_Cruiser_Pyramid.entity, Heavy, ANTIMEDIUM, , 
+OS_B_Cruiser_Sphere.entity, VeryHeavy, ANTIVERYHEAVY, , 
+OS_B_Frigate_Interceptor.entity, VeryLight, ANTIMEDIUM, , 
+OS_B_Support_Adaptor.entity, Heavy, ANTIMEDIUM, , 
+OS_C_Corvette_Conservator.entity, Light, ANTIVERYLIGHT, , 
+OS_C_Flak_Ocett.entity, Medium, ANTIVERYLIGHT, , 
+OS_C_Frigate_Rasilak.entity, VeryLight, ANTIMEDIUM, , 
+OS_C_Support_Norin.entity, Medium, ANTILIGHT, , 
+OS_C_Support_Tonga.entity, Light, ANTIVERYLIGHT, ANTILIGHT, 
+OS_F_Corvette_Miranda.entity, Light, ANTIVERYLIGHT, , 
+OS_F_Cruiser_Excelsior.entity, Heavy, ANTIMEDIUM, , 
+OS_F_Destroyer_Challenger.entity, Light, ANTIVERYLIGHT, , 
+OS_F_Destroyer_Cheyenne.entity, Medium, ANTIMEDIUM, , 
+OS_F_Destroyer_Springfield.entity, Heavy, ANTIVERYHEAVY, , 
+OS_K_Corvette_Raptor.entity, Light, ANTILIGHT, , 
+OS_K_Flak_K32.entity, Medium, ANTIVERYLIGHT, , 
+OS_K_Frigate_Brell.entity, VeryLight, ANTIMEDIUM, , 
+OS_K_Longrange_Kvort.entity, Light, ANTIVERYHEAVY, , 
+OS_K_Support_Ktinga.entity, Medium, ANTIMEDIUM, ANTIHEAVY, 
+OS_R_Corvette_Shrike.entity, Light, ANTIHEAVY, , 
+OS_R_Cruiser_HeavyDefender.entity, VeryHeavy, ANTIMEDIUM, , 
+OS_R_Flak_Lanora.entity, Medium, ANTIVERYLIGHT, , 
+OS_R_Frigate_Hawk.entity, VeryLight, ANTIMEDIUM, , 
+OS_R_Support_Harpy.entity, VeryLight, ANTIHEAVY, ANTIVERYHEAVY, 
+PLANETMODULE_TECHORBITALCRYSTALEXTRACTOR.entity, Module, , , 
+PLANETMODULE_TECHORBITALFRIGATEFACTORY.entity, Module, , , 
+PLANETMODULE_TECHORBITALGAUSSDEFENSE.entity, VeryHeavy, COMPOSITE, , 
+PLANETMODULE_TECHORBITALMETALEXTRACTOR.entity, Module, , , 
+P_Cap_Theropod.entity, Pirate, COMPOSITE, , 
+P_Cruiser_Varanus.entity, Pirate, COMPOSITE, , 
+P_Flak_Uracentron.entity, Pirate, COMPOSITE, , 
+P_Frigate_Raider.entity, Pirate, COMPOSITE, , 
+P_Siege_Ravager.entity, Pirate, COMPOSITE, , 
+P_Station_HomeBase.entity, Pirate, COMPOSITE, , 
+P_Station_Turret.entity, Pirate, COMPOSITE, , 
+Remnant_ISDII.entity, CapitalShip, CAPITALSHIP, , 
+R_AntiStation_WhiteWing.entity, Heavy, ANTIMODULE, , 
+R_Cap_Battlecruiser.entity, CapitalShip, ANTIMODULE, , 
+R_Cap_HeavyCruiser.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Cap_Shadow.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Cap_Tavara.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Cap_Valdore.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Cap_Vengeance.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Cap_Warbird.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Carrier_Dominus.entity, Medium, ANTILIGHT, , 
+R_Corvette_Shrike.entity, Light, ANTIHEAVY, , 
+R_Cruiser_Falcon.entity, VeryHeavy, ANTIHEAVY, , 
+R_Cruiser_HeavyDefender.entity, VeryHeavy, ANTIMEDIUM, , 
+R_envoy_pollux.entity, Light, ANTIMEDIUM, , 
+R_Fighter_Javelin.entity, VeryLight, ANTIVERYLIGHT, , 
+R_Fighter_Javelin_elite.entity, VeryLight, ANTIVERYLIGHT, , 
+R_Flak_Lanora.entity, Medium, ANTIVERYLIGHT, , 
+R_Freight_Cargo.entity, Light, , , 
+R_Freight_Trade.entity, Light, , , 
+R_Frigate_Hawk.entity, VeryLight, ANTIMEDIUM, , 
+R_Hero_Donatra.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Hero_Sela.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Hero_Tomalok.entity, CapitalShip, ANTIVERYHEAVY, , 
+R_Homeworld_Misc_SBconstructor.entity, Heavy, , , 
 R_Homeworld_Starbase_Spacedock.entity, Module, ANTILIGHT, ANTIMEDIUM, ANTIVERYHEAVY
-R_Longrange_Raptor.entity, Light, ANTIVERYHEAVY
-R_Misc_Colony.entity, Light
-R_Misc_Construction.entity, Light
-R_Misc_DecoyDrone.entity, Medium
-R_Misc_SBconstructor.entity, Heavy
-R_Scorpion.entity, VeryLight, ANTIMODULE
-R_Scout_Talon.entity, VeryLight, ANTILIGHT
-R_Shuttle.entity, VeryLight, ANTIMODULE
-R_Shuttle_elite.entity, VeryLight, ANTIMODULE
-R_Siege_WingedDefender.entity, Medium, ANTILIGHT
+R_Longrange_Raptor.entity, Light, ANTIVERYHEAVY, , 
+R_Misc_Colony.entity, Light, , , 
+R_Misc_Construction.entity, Light, , , 
+R_Misc_DecoyDrone.entity, Medium, , , 
+R_Misc_SBconstructor.entity, Heavy, , , 
+R_Scorpion.entity, VeryLight, ANTIMODULE, , 
+R_Scout_Talon.entity, VeryLight, ANTILIGHT, , 
+R_Shuttle.entity, VeryLight, ANTIMODULE, , 
+R_Shuttle_elite.entity, VeryLight, ANTIMODULE, , 
+R_Siege_WingedDefender.entity, Medium, ANTILIGHT, , 
 R_Starbase_Outpost.entity, VeryHeavy, ANTILIGHT, ANTIMEDIUM, ANTIVERYHEAVY
 R_Starbase_Spacedock.entity, Module, ANTILIGHT, ANTIMEDIUM, ANTIVERYHEAVY
-R_Station_Civ_Res.entity, Light
-R_Station_Com_Res.entity, Light
-R_Station_Culture.entity, Light
-R_Station_DilithiumMine.entity, Heavy
-R_Station_DisruptionStation.entity, VeryHeavy
-R_Station_Drydock.entity, VeryHeavy
-R_Station_FleetCommand.entity, Module
-R_Station_MiningTrade.entity, Heavy
-R_Station_PlasmaTurret.entity, VeryHeavy, ANTIVERYHEAVY
-R_Station_Repairyard.entity, Medium
-R_Station_Spacemine_Field.entity, Light
-R_Station_TitanYard.entity, VeryHeavy
-R_Station_TritaniumMine.entity, Heavy
-R_Station_Turret.entity, Light, ANTIMEDIUM
-R_Station_Warbirdyard.entity, VeryHeavy
-R_Support_Griffin.entity, Heavy, ANTIVERYLIGHT
-R_Support_Harpy.entity, VeryLight, ANTIHEAVY, ANTIVERYHEAVY
-R_TalShiar_Cruiser_Falcon.entity, Pirate, COMPOSITE
-R_Talshiar_Support_Griffin.entity, Pirate, COMPOSITE
-R_Talshiar_Support_Harpy.entity, Pirate, COMPOSITE
-R_Titan_Scimitar.entity, Titan, ANTIVERYHEAVY
-R_Titan_Shockwave.entity, Titan, ANTIVERYHEAVY
-StarBaseTech.entity, Module, CAPITALSHIP
+R_Station_Civ_Res.entity, Light, , , 
+R_Station_Com_Res.entity, Light, , , 
+R_Station_Culture.entity, Light, , , 
+R_Station_DilithiumMine.entity, Heavy, , , 
+R_Station_DisruptionStation.entity, VeryHeavy, , , 
+R_Station_Drydock.entity, VeryHeavy, , , 
+R_Station_FleetCommand.entity, Module, , , 
+R_Station_MiningTrade.entity, Heavy, , , 
+R_Station_PlasmaTurret.entity, VeryHeavy, ANTIVERYHEAVY, , 
+R_Station_Repairyard.entity, Medium, , , 
+R_Station_Spacemine_Field.entity, Light, , , 
+R_Station_TitanYard.entity, VeryHeavy, , , 
+R_Station_TritaniumMine.entity, Heavy, , , 
+R_Station_Turret.entity, Light, ANTIMEDIUM, , 
+R_Station_Warbirdyard.entity, VeryHeavy, , , 
+R_Support_Griffin.entity, Heavy, ANTIVERYLIGHT, , 
+R_Support_Harpy.entity, VeryLight, ANTIHEAVY, ANTIVERYHEAVY, 
+R_TalShiar_Cruiser_Falcon.entity, Pirate, COMPOSITE, , 
+R_Talshiar_Support_Griffin.entity, Pirate, COMPOSITE, , 
+R_Talshiar_Support_Harpy.entity, Pirate, COMPOSITE, , 
+R_Titan_Scimitar.entity, Titan, ANTIVERYHEAVY, , 
+R_Titan_Shockwave.entity, Titan, ANTIVERYHEAVY, , 
+StarBaseTech.entity, Module, CAPITALSHIP, , 
