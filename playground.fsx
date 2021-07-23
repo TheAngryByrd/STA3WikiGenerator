@@ -1230,6 +1230,7 @@ let armorWeaponCSVReport (infos : Information list) =
         IO.Directory.Delete(newTemplatesPath,true)
     IO.Directory.CreateDirectory(newTemplatesPath) |> ignore
     let csvFile = IO.Path.Join(newTemplatesPath, "armor-weapon-report.csv")
+    IO.File.AppendAllLines(csvFile, ["Entity, Armor Type, Weapon Type 1, Weapon Type 2, Weapon Type 3"])
     for i in infos do
         let entityFile = i.GameInfoFile.fileName.Name
         let armorType = i.ShipSpecifications.ArmorType
